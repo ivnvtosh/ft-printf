@@ -1,6 +1,8 @@
 .DS_Store
 .vscode
 .idea
+main.c
+sh.sh
 *.gch
 *.swp
 *.out
