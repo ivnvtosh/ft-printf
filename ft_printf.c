@@ -12,28 +12,34 @@
 
 #include "ft_printf.h"
 
-int	ft_isformat_specifier(const char *s, va_list ap)
+int	ft_put(char c)
+{
+	ft_putchar_fd(c, 1);
+	return (1);
+}
+
+int	ft_isformat_specifier(char c, va_list ap)
 {
 	int	count;
 
-	if (*s == 'c')
+	if (c == 'c')
 		count = ft_is_char(ap);
-	else if (*s == 's')
+	else if (c == 's')
 		count = ft_is_string(ap);
-	else if (*s == 'p')
+	else if (c == 'p')
 		count = ft_is_pointer(ap);
-	else if (*s == 'd')
+	else if (c == 'd')
 		count = ft_is_decimal(ap);
-	else if (*s == 'i')
+	else if (c == 'i')
 		count = ft_is_decimal(ap);
-	else if (*s == 'u')
+	else if (c == 'u')
 		count = ft_unsigned_decimal(ap);
-	else if (*s == 'x')
-		count = ft_is_hexadecimal(ap);
-	else if (*s == 'X')
-		count = ft_is_hexadecimal_X(ap);
-	else if (*s == '%')
-		count = ft_is_0lo('%', 1);
+	else if (c == 'x')
+		count = ft_is_hexadecimal_lowercase(ap);
+	else if (c == 'X')
+		count = ft_is_hexadecimal_uppercase(ap);
+	else if (c == '%')
+		count = ft_put('%');
 	else
 		return (0);
 	return (count);
@@ -48,14 +54,13 @@ int	ft_printf(const char *s, ...)
 	va_start(ap, s);
 	count = 0;
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
-		while (s[i] != '%' && s[i] != '\0')
-			ft_putchar_fd(s[i++], 1);
-		count += i;
-		if (s[i] == '%')
+		if (s[i] != '%')
+			count += ft_put(s[i++]);
+		else
 		{
-			count += ft_isformat_specifier(&s[i + 1], ap);
+			count += ft_isformat_specifier(s[++i], ap);
 			i += 2;
 		}
 	}

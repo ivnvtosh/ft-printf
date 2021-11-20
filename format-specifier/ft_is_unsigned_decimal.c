@@ -12,24 +12,21 @@
 
 #include "../ft_printf.h"
 
-static void	ft_recursion(unsigned int n, int fd)
+static void	ft_recursion(unsigned int n)
 {
 	if (n < 10)
-		ft_putchar_fd(n + 48, fd);
+		ft_putchar_fd(n + 48, 1);
 	else
 	{
-		ft_recursion(n / 10, fd);
-		ft_recursion(n % 10, fd);
+		ft_recursion(n / 10);
+		ft_recursion(n % 10);
 	}
 }
 
-int	ft_unsigned_decimal(va_list ap)
+static int	ft_nbrlen(unsigned int n)
 {
-	unsigned int	n;
-	int				count;
+	int	count;
 
-	n = va_arg(ap, unsigned int);
-	ft_recursion(n, 1);
 	count = 0;
 	while (n)
 	{
@@ -37,4 +34,13 @@ int	ft_unsigned_decimal(va_list ap)
 		count++;
 	}
 	return (count);
+}
+
+int	ft_unsigned_decimal(va_list ap)
+{
+	unsigned int	n;
+
+	n = va_arg(ap, unsigned int);
+	ft_recursion(n);
+	return (ft_nbrlen(n));
 }

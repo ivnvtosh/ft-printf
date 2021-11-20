@@ -21,11 +21,11 @@ int	ft_printf(const char *s, ...);
 
 int	ft_is_char(va_list ap);
 int	ft_is_decimal(va_list ap);
-int	ft_is_hexadecimal(va_list ap);
 int	ft_is_pointer(va_list ap);
-int	ft_is_hexadecimal_X(va_list ap);
-int  ft_is_0lo(char c, int fd);
+int  ft_is_percent(void);
 int	ft_is_string(va_list ap);
 int	ft_unsigned_decimal(va_list ap);
+int	ft_is_hexadecimal_uppercase(va_list ap);
+int	ft_is_hexadecimal_lowercase(va_list ap);
 
 #endif

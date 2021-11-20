@@ -12,13 +12,10 @@
 
 #include "../ft_printf.h"
 
-int	ft_is_decimal(va_list ap)
+static int	ft_nbrlen(int n)
 {
-	int	n;
 	int	count;
 
-	n = va_arg(ap, int);
-	ft_putnbr_fd(n, 1);
 	count = 0;
 	while (n)
 	{
@@ -27,3 +24,13 @@ int	ft_is_decimal(va_list ap)
 	}
 	return (count);
 }
+
+int	ft_is_decimal(va_list ap)
+{
+	int	n;
+
+	n = va_arg(ap, int);
+	ft_putnbr_fd(n, 1);
+	return (ft_nbrlen(n));
+}
+

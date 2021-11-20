@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 20:41:42 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/19 20:44:23 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/20 19:42:56 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/20 19:42:58 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static void	ft_recursion(int n)
+static void	ft_recursion(unsigned long long n)
 {
 	if (n < 10)
 		ft_putchar_fd(n + 48, 1);
@@ -25,14 +25,10 @@ static void	ft_recursion(int n)
 	}
 }
 
-int	ft_is_pointer(va_list ap)
+static int	ft_nbrlen(unsigned long long n)
 {
-	int	n;
 	int	count;
 
-	n = va_arg(ap, int);
-	ft_putstr_fd("0x1", 1);
-	ft_recursion(n);
 	count = 0;
 	while (n)
 	{
@@ -40,4 +36,14 @@ int	ft_is_pointer(va_list ap)
 		count++;
 	}
 	return (count);
+}
+
+int	ft_is_pointer(va_list ap)
+{
+	unsigned long long	n;
+
+	n = va_arg(ap, unsigned long long);
+	ft_putstr_fd("0x", 1);
+	ft_recursion(n);
+	return (ft_nbrlen(n));
 }

@@ -12,8 +12,8 @@
 
 #include "../ft_printf.h"
 
-int  ft_is_0lo(char c, int fd)
+int  ft_is_percent(void)
 {
-    ft_putchar_fd(c, fd);
+    ft_putchar_fd('%', 1);
     return (1);
 }

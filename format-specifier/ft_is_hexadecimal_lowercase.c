@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_hexadecimal.c                                :+:      :+:    :+:   */
+/*   ft_is_hexadecimal_lowercase.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 21:13:24 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/19 21:15:19 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/20 19:42:06 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/20 19:42:08 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_recursion(unsigned int n)
 	if (n < 10)
 		ft_putchar_fd(n + 48, 1);
 	else if (n < 16)
-		ft_putchar_fd(n + 55, 1);
+		ft_putchar_fd(n + 87, 1);
 	else
 	{
 		ft_recursion(n / 16);
@@ -25,13 +25,10 @@ static void	ft_recursion(unsigned int n)
 	}
 }
 
-int	ft_is_hexadecimal_X(va_list ap)
+static int	ft_nbrlen(unsigned int n)
 {
-	unsigned int	n;
-	int         	count;
+	int	count;
 
-	n = va_arg(ap, int);
-	ft_recursion(n);
 	count = 0;
 	while (n)
 	{
@@ -39,4 +36,13 @@ int	ft_is_hexadecimal_X(va_list ap)
 		count++;
 	}
 	return (count);
+}
+
+int	ft_is_hexadecimal_lowercase(va_list ap)
+{
+	unsigned int	n;
+
+	n = va_arg(ap, unsigned int);
+	ft_recursion(n);
+	return (ft_nbrlen(n));
 }
