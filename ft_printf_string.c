@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_is_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/06 21:16:47 by ccamie            #+#    #+#             */
-/*   Updated: 2021/10/13 16:17:44 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/19 20:27:06 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/19 20:28:32 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	ft_is_string(va_list ap)
 {
-	unsigned char		*p1;
-	const unsigned char	*p2;
+	char	*s;
 
-	p1 = dst;
-	p2 = src;
-	if (dst < src)
-		ft_memcpy(dst, src, len);
-	else if (dst > src)
-		while (len--)
-			p1[len] = p2[len];
-	return (dst);
+	s = va_arg(ap, char *);
+	if (s == NULL)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
+	ft_putstr_fd(s, 1);
+	return (ft_strlen(s));
 }

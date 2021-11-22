@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 static void	ft_recursion(unsigned int n)
 {
@@ -30,6 +30,8 @@ static int	ft_nbrlen(unsigned int n)
 	int	count;
 
 	count = 0;
+	if (n == 0)
+		count++;
 	while (n)
 	{
 		n /= 16;

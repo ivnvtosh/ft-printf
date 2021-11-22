@@ -18,10 +18,11 @@ int	ft_put(char c)
 	return (1);
 }
 
-int	ft_isformat_specifier(char c, va_list ap)
+int	ft_isformat_specifier(const char **s, char c, va_list ap)
 {
 	int	count;
 
+	count = 0;
 	if (c == 'c')
 		count = ft_is_char(ap);
 	else if (c == 's')
@@ -41,7 +42,8 @@ int	ft_isformat_specifier(char c, va_list ap)
 	else if (c == '%')
 		count = ft_put('%');
 	else
-		return (0);
+		*s -= 1;
+	*s += 2;
 	return (count);
 }
 
@@ -49,21 +51,17 @@ int	ft_printf(const char *s, ...)
 {
 	va_list	ap;
 	int		count;
-	int		i;
 
 	va_start(ap, s);
 	count = 0;
-	i = 0;
-	while (s[i] != '\0')
+	while (*s != '\0')
 	{
-		if (s[i] != '%')
-			count += ft_put(s[i++]);
+		if (*s != '%')
+			count += ft_put(*s++);
 		else
-		{
-			count += ft_isformat_specifier(s[++i], ap);
-			i += 2;
-		}
+			count += ft_isformat_specifier(&s, *(s + 1), ap);
 	}
 	va_end(ap);
 	return (count);
 }
+

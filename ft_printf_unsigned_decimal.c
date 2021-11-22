@@ -1,56 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_is_unsigned_decimal.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 15:54:32 by ccamie            #+#    #+#             */
-/*   Updated: 2021/10/16 15:54:34 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/19 20:57:21 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/19 20:59:03 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static int	ft_len(int n)
+static void	ft_recursion(unsigned int n)
 {
-	int	i;
-
-	if (n == 0)
-		return (1);
-	i = 0;
-	if (n < 0)
-		i++;
-	while (n)
+	if (n < 10)
+		ft_putchar_fd(n + 48, 1);
+	else
 	{
-		n = n / 10;
-		i++;
+		ft_recursion(n / 10);
+		ft_recursion(n % 10);
 	}
-	return (i);
 }
 
-char	*ft_itoa(int n)
+static int	ft_nbrlen(unsigned int n)
 {
-	char	*p;
-	int		i;
-	int		sign;
+	int	count;
 
-	sign = 1;
-	i = ft_len(n);
-	p = (char *)malloc(sizeof(*p) * (i + 1));
-	if (p == NULL)
-		return (NULL);
-	p[i--] = 0;
-	p[0] = '0';
+	count = 0;
 	if (n < 0)
-	{
-		p[0] = '-';
-		sign = -1;
-	}
+		count++;
+	if(n == 0)
+		count++;
 	while (n)
 	{
-		p[i--] = n % 10 * sign + '0';
-		n = n / 10;
+		n /= 10;
+		count++;
 	}
-	return (p);
+	return (count);
+}
+
+int	ft_unsigned_decimal(va_list ap)
+{
+	unsigned int	n;
+
+	n = va_arg(ap, unsigned int);
+	ft_recursion(n);
+	return (ft_nbrlen(n));
 }

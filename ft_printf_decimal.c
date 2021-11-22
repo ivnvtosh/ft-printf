@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_is_decimal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/16 18:12:54 by ccamie            #+#    #+#             */
-/*   Updated: 2021/10/16 18:12:55 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/19 20:41:42 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/19 20:44:23 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+static int	ft_nbrlen(int n)
 {
-	size_t	slen;
+	int	count;
 
-	if (s1 == NULL || set == NULL)
-		return (NULL);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	slen = ft_strlen(s1);
-	while (slen && ft_strchr(set, s1[slen]))
-		slen--;
-	return (ft_substr(s1, 0, slen + 1));
+	count = 0;
+	if (n < 0)
+		count++;
+	if(n == 0)
+		count++;
+	while (n)
+	{
+		n /= 10;
+		count++;
+	}
+	return (count);
 }
+
+int	ft_is_decimal(va_list ap)
+{
+	int	n;
+
+	n = va_arg(ap, int);
+	ft_putnbr_fd(n, 1);
+	return (ft_nbrlen(n));
+}
+

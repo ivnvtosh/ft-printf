@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
-static void	ft_recursion(unsigned long long n)
+static void	ft_recursion(unsigned long int n)
 {
 	if (n < 10)
 		ft_putchar_fd(n + 48, 1);
@@ -25,11 +25,13 @@ static void	ft_recursion(unsigned long long n)
 	}
 }
 
-static int	ft_nbrlen(unsigned long long n)
+static int	ft_nbrlen(unsigned long int n)
 {
 	int	count;
 
 	count = 0;
+	if (n == 0)
+		count++;
 	while (n)
 	{
 		n /= 16;
@@ -42,8 +44,8 @@ int	ft_is_pointer(va_list ap)
 {
 	unsigned long long	n;
 
-	n = va_arg(ap, unsigned long long);
+	n = va_arg(ap, unsigned long int);
 	ft_putstr_fd("0x", 1);
 	ft_recursion(n);
-	return (ft_nbrlen(n));
+	return (ft_nbrlen(n) + 2);
 }
