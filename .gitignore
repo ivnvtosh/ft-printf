@@ -2,6 +2,7 @@
 .vscode
 .idea
 main.c
+test-1
 sh.sh
 *.gch
 *.swp
