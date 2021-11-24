@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 20:24:12 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/19 20:24:13 by ccamie           ###   ########.fr       */
+/*   Created: 2021/10/06 18:31:56 by ccamie            #+#    #+#             */
+/*   Updated: 2021/10/06 18:50:26 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	slen;
 
-int	ft_printf(const char *s, ...);
-
-int	print_char(char c);
-int	print_string(char *s);
-int	print_pointer(unsigned long int n);
-int	print_decimal(int n);
-int	print_unsigned_decimal(unsigned int n);
-int	print_hexadecimal_lowercase(unsigned int n);
-int	print_hexadecimal_uppercase(unsigned int n);
-
-#endif
+	slen = 0;
+	while (s[slen])
+		slen++;
+	return (slen);
+}

@@ -1,50 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_hexadecimal_uppercase.c                      :+:      :+:    :+:   */
+/*   print_decimal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 21:13:24 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/19 21:15:19 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/24 15:00:30 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/24 15:00:43 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
+#include "../libft/libft.h"
 
-static void	ft_recursion(unsigned int n)
-{
-	if (n < 10)
-		ft_putchar_fd(n + 48, 1);
-	else if (n < 16)
-		ft_putchar_fd(n + 55, 1);
-	else
-	{
-		ft_recursion(n / 16);
-		ft_recursion(n % 16);
-	}
-}
-
-static int	ft_nbrlen(unsigned int n)
+static int	ft_nbrlen(int n)
 {
 	int	count;
 
-	count = 0;
 	if (n == 0)
-		count++;
+		return (1);
+	if (n < 0)
+		count = 1;
+	else
+		count = 0;
 	while (n)
 	{
-		n /= 16;
+		n /= 10;
 		count++;
 	}
 	return (count);
 }
 
-int	ft_is_hexadecimal_uppercase(va_list ap)
+int	print_decimal(int n)
 {
-	unsigned int	n;
-
-	n = va_arg(ap, unsigned int);
-	ft_recursion(n);
+	ft_putnbr_fd(n, 1);
 	return (ft_nbrlen(n));
 }

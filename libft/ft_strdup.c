@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_char.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 20:26:15 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/19 20:28:45 by ccamie           ###   ########.fr       */
+/*   Created: 2021/10/08 18:59:38 by ccamie            #+#    #+#             */
+/*   Updated: 2021/10/12 17:52:28 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_is_char(va_list ap)
+char	*ft_strdup(const char *s1)
 {
-	char	c;
+	char	*s2;
+	size_t	slen;
 
-	c = va_arg(ap, int);
-	ft_putchar_fd(c, 1);
-	return (1);
+	slen = ft_strlen(s1) + 1;
+	s2 = (char *)malloc(sizeof(char) * (slen));
+	if (s2 == NULL)
+		return (NULL);
+	ft_memcpy(s2, s1, slen);
+	return (s2);
 }

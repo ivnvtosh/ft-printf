@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_pointer.c                                    :+:      :+:    :+:   */
+/*   print_hexadecimal_uppercase.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 19:42:56 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/20 19:42:58 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/24 15:09:16 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/24 15:09:17 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
+#include "../libft/libft.h"
 
-static void	ft_recursion(unsigned long int n)
+static void	ft_recursion(unsigned int n)
 {
 	if (n < 10)
 		ft_putchar_fd(n + 48, 1);
 	else if (n < 16)
-		ft_putchar_fd(n + 87, 1);
+		ft_putchar_fd(n + 55, 1);
 	else
 	{
 		ft_recursion(n / 16);
@@ -25,13 +26,13 @@ static void	ft_recursion(unsigned long int n)
 	}
 }
 
-static int	ft_nbrlen(unsigned long int n)
+static int	ft_nbrlen(unsigned int n)
 {
 	int	count;
 
-	count = 0;
 	if (n == 0)
-		count++;
+		return (1);
+	count = 0;
 	while (n)
 	{
 		n /= 16;
@@ -40,12 +41,8 @@ static int	ft_nbrlen(unsigned long int n)
 	return (count);
 }
 
-int	ft_is_pointer(va_list ap)
+int	print_hexadecimal_uppercase(unsigned int n)
 {
-	unsigned long long	n;
-
-	n = va_arg(ap, unsigned long int);
-	ft_putstr_fd("0x", 1);
 	ft_recursion(n);
-	return (ft_nbrlen(n) + 2);
+	return (ft_nbrlen(n));
 }

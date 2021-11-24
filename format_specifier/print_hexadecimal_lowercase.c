@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_hexadecimal_lowercase.c                      :+:      :+:    :+:   */
+/*   print_hexadecimal_lowercase.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/20 19:42:06 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/20 19:42:08 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/24 15:07:47 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/24 15:07:47 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
+#include "../libft/libft.h"
 
 static void	ft_recursion(unsigned int n)
 {
@@ -29,9 +30,9 @@ static int	ft_nbrlen(unsigned int n)
 {
 	int	count;
 
-	count = 0;
 	if (n == 0)
-		count++;
+		return (1);
+	count = 0;
 	while (n)
 	{
 		n /= 16;
@@ -40,11 +41,8 @@ static int	ft_nbrlen(unsigned int n)
 	return (count);
 }
 
-int	ft_is_hexadecimal_lowercase(va_list ap)
+int	print_hexadecimal_lowercase(unsigned int n)
 {
-	unsigned int	n;
-
-	n = va_arg(ap, unsigned int);
 	ft_recursion(n);
 	return (ft_nbrlen(n));
 }
