@@ -22,7 +22,7 @@ int	format_specifier(const char **s, char c, va_list ap)
 	else if (c == 's')
 		count = print_string(va_arg(ap, char *));
 	else if (c == 'p')
-		count = print_pointer(va_arg(ap, unsigned long int));
+		count = print_pointer((unsigned long)va_arg(ap, void *));
 	else if (c == 'd')
 		count = print_decimal(va_arg(ap, int));
 	else if (c == 'i')

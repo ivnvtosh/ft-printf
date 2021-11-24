@@ -13,7 +13,7 @@
 #include "../ft_printf.h"
 #include "../libft/libft.h"
 
-static void	ft_recursion(unsigned long int n)
+static void	ft_recursion(unsigned long n)
 {
 	if (n < 10)
 		ft_putchar_fd(n + 48, 1);
@@ -26,7 +26,7 @@ static void	ft_recursion(unsigned long int n)
 	}
 }
 
-static int	ft_nbrlen(unsigned long int n)
+static int	ft_nbrlen(unsigned long n)
 {
 	int	count;
 
@@ -41,7 +41,7 @@ static int	ft_nbrlen(unsigned long int n)
 	return (count);
 }
 
-int	print_pointer(unsigned long int n)
+int	print_pointer(unsigned long n)
 {
 	ft_putstr_fd("0x", 1);
 	ft_recursion(n);
