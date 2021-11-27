@@ -1,9 +1,9 @@
 .DS_Store
 .vscode
 .idea
-main.c
-test-1
-sh.sh
+# main.c
+# test-1
+# sh.sh
 *.gch
 *.swp
 *.out

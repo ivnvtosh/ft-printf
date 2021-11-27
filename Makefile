@@ -21,7 +21,9 @@ SRCS	=	format_specifier/print_char.c					\
 			format_specifier/print_pointer.c				\
 			format_specifier/print_string.c					\
 			format_specifier/print_unsigned_decimal.c		\
-			ft_printf.c
+			ft_printf.c										\
+			printf-option.c									\
+			printf-utils.c
 
 CC		=	gcc
 FLAGS	=	-Wall -Wextra -Werror
