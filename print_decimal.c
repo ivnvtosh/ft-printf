@@ -13,19 +13,16 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	print_decimal(int n)
+int	print_decimal(long n)
 {
-	int				len;
-	unsigned int	u;
+	int	len;
 
-	len = nbrlen(u, 10);
+	len = nbrlen(n, 10);
 	if (n < 0)
 	{
 		len += print_char('-');
-		u = -n;
+		n = -n;
 	}
-	else
-		u = n;
-	print_number("0123456789", u, 10);
+	print_number("0123456789", n, 10);
 	return (len);
 }

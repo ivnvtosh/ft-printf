@@ -15,7 +15,7 @@
 
 int	print_part(const char **ps)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*ps)[i] != '%' && (*ps)[i] != '\0')

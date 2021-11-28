@@ -41,6 +41,7 @@ $(NAME)	:	$(OBJS) $(LIBFT)
 
 $(LIBFT):
 			make -C libft
+			make -C libft clean
 
 %.o		:	%.c $(HEADER)
 			$(CC) -o $(FLAGS) -c $< -o $@
