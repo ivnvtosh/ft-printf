@@ -11,19 +11,20 @@
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
-HEADER	=	ft_printf.h
 LIBFT	=	libft/libft.a
+HEADER	=	ft_printf.h
 
-SRCS	=	format_specifier/print_char.c					\
-			format_specifier/print_decimal.c				\
-			format_specifier/print_hexadecimal_lowercase.c	\
-			format_specifier/print_hexadecimal_uppercase.c	\
-			format_specifier/print_pointer.c				\
-			format_specifier/print_string.c					\
-			format_specifier/print_unsigned_decimal.c		\
-			ft_printf.c										\
-			printf-option.c									\
-			printf-utils.c
+SRCS	=	print_char.c					\
+			print_decimal.c					\
+			print_hexadecimal_lowercase.c	\
+			print_hexadecimal_uppercase.c	\
+			print_number.c					\
+			print_part.c					\
+			print_pointer.c					\
+			print_string.c					\
+			print_unsigned_decimal.c		\
+			printf_utils.c					\
+			ft_printf.c
 
 CC		=	gcc
 FLAGS	=	-Wall -Wextra -Werror

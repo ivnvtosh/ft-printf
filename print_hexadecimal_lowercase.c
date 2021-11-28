@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_string.c                                     :+:      :+:    :+:   */
+/*   print_hexadecimal_lowercase.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 14:54:15 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/24 14:54:17 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/24 15:07:47 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/24 15:07:47 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
-#include "../libft/libft.h"
+#include "ft_printf.h"
+#include "libft/libft.h"
 
-int	print_string(char *s)
+int	print_hexadecimal_lowercase(unsigned int n)
 {
-	if (s == NULL)
-		return (print_string("(null)"));
-	ft_putstr_fd(s, 1);
-	return (ft_strlen(s));
+	print_number("0123456789abcdef", n, 16);
+	return (nbrlen(n, 16));
 }

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   print_unsigned_decimal.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 14:53:29 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/24 14:53:31 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/24 15:04:18 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/24 15:04:19 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
-#include "../libft/libft.h"
+#include "ft_printf.h"
+#include "libft/libft.h"
 
-int	print_char(char c)
+int	print_unsigned_decimal(unsigned int n)
 {
-	ft_putchar_fd(c, 1);
-	return (1);
+	print_number("0123456789", n, 10);
+	return (nbrlen(n, 10));
 }

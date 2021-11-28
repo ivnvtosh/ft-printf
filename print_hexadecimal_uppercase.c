@@ -10,39 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
-#include "../libft/libft.h"
-
-static void	ft_recursion(unsigned int n)
-{
-	if (n < 10)
-		ft_putchar_fd(n + 48, 1);
-	else if (n < 16)
-		ft_putchar_fd(n + 55, 1);
-	else
-	{
-		ft_recursion(n / 16);
-		ft_recursion(n % 16);
-	}
-}
-
-static int	ft_nbrlen(unsigned int n)
-{
-	int	count;
-
-	if (n == 0)
-		return (1);
-	count = 0;
-	while (n)
-	{
-		n /= 16;
-		count++;
-	}
-	return (count);
-}
+#include "ft_printf.h"
+#include "libft/libft.h"
 
 int	print_hexadecimal_uppercase(unsigned int n)
 {
-	ft_recursion(n);
-	return (ft_nbrlen(n));
+	print_number("0123456789ABCDEF", n, 16);
+	return (nbrlen(n, 16));
 }

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option.c                                           :+:      :+:    :+:   */
+/*   print_part.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 14:22:33 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/27 14:22:34 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/24 16:12:19 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/24 16:13:55 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-// int	ft_justify(int count, char c)
-// {
-// 	int	len;
+int	print_part(const char **ps)
+{
+	int i;
 
-// 	len = 0;
-// 	while (count > 0)
-// 	{
-// 		ft_putchar_fd(c, 1);
-// 		count--;
-// 		len++;
-// 	}
-// 	return (len);
-// }
+	i = 0;
+	while ((*ps)[i] != '%' && (*ps)[i] != '\0')
+		i++;
+	write(1, *ps, i);
+	*ps += i;
+	return (i);
+}
