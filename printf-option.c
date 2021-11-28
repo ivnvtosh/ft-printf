@@ -13,16 +13,16 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	ft_justify(int count, char c)
-{
-	int	len;
+// int	ft_justify(int count, char c)
+// {
+// 	int	len;
 
-	len = 0;
-	while (count > 0)
-	{
-		ft_putchar_fd(c, 1);
-		count--;
-		len++;
-	}
-	return (len);
-}
+// 	len = 0;
+// 	while (count > 0)
+// 	{
+// 		ft_putchar_fd(c, 1);
+// 		count--;
+// 		len++;
+// 	}
+// 	return (len);
+// }

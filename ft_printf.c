@@ -56,13 +56,20 @@ const char	*check_it_out(const char *s, o_list *list)
 int	check_option(const char **ps, va_list ap, o_list *list)
 {
 	*ps += 1;
-	while (ft_strchr("0+ -", **ps))
+	while (ft_strchr("0+ ", **ps))
 		*ps = check_it_out(*ps, list);
 	list->count = ft_atoi(*ps);
 	if (**ps == '-')
 		*ps += 1;
 	while (ft_isdigit(**ps))
 		*ps += 1;
+	if (**ps == '.')
+	{
+		*ps += 1;
+		list->precision = ft_atoi(*ps);
+		while (ft_isdigit(**ps))
+			*ps += 1;
+	}
 	return (format_specifier(ps, **ps, ap, list));
 }
 

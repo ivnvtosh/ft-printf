@@ -23,6 +23,7 @@ typedef struct o_list
 	int	sign;
 	int	ch;
 	int	count;
+	int	precision;
 }	o_list;
 
 int	ft_printf(const char *s, ...);
@@ -30,7 +31,7 @@ int	ft_printf(const char *s, ...);
 int	print_char(char c);
 int	print_string(char *s);
 int	print_pointer(unsigned long int n);
-int	print_decimal(o_list *list, long n);
+int	print_decimal(o_list *list, int n);
 int	print_unsigned_decimal(unsigned int n);
 int	print_hexadecimal_lowercase(unsigned int n);
 int	print_hexadecimal_uppercase(unsigned int n);

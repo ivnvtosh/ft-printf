@@ -18,11 +18,11 @@ int	main(void)
 	// printf("   printf -> %5d <-\n", 1);
 	// ft_printf("ft_printf -> %5d <-\n", 1);
 
-	printf("   printf -> %+09d <-\n", 123);
-	ft_printf("ft_printf -> %+09d <-\n", 123);
+	//    printf("   printf -> %+10d <-\n", 123);
+	// ft_printf("ft_printf -> %+10d <-\n", 123);
 
-	// printf("   printf -> %9d <-\n", 123);
-	// ft_printf("ft_printf -> %9d <-\n", 123);
+	   printf("   printf -> %c a %c b %c <-\n", '0', 0, '1');
+	ft_printf("ft_printf -> %c a %c b %c <-\n", '0', 0, '1');
 
 
 
