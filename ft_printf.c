@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 #include "libft/libft.h"
 
 int	format_specifier(const char **ps, char c, va_list ap)

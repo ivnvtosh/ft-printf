@@ -12,7 +12,7 @@
 
 NAME	=	libftprintf.a
 LIBFT	=	libft/libft.a
-HEADER	=	ft_printf.h
+HEADER	=	printf.h
 
 SRCS	=	print_char.c					\
 			print_decimal.c					\

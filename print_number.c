@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 #include "libft/libft.h"
 
 void	print_number(char *s, unsigned long n, unsigned long mode)
