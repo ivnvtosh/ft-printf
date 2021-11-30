@@ -18,6 +18,16 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
+typedef struct o_list
+{
+	int	hashtag;
+	int	sign;
+	int	space;
+	int	space_or_zero;
+	int	width;
+	int	precision;
+}	o_list;
+
 int		ft_printf(const char *s, ...);
 
 int		print_part(const char **ps);
@@ -29,7 +39,7 @@ int		print_string(char *s);
 int		print_pointer(unsigned long int n);
 int		print_decimal(long n);
 int		print_unsigned_decimal(unsigned int n);
-int		print_hexadecimal_lowercase(unsigned int n);
-int		print_hexadecimal_uppercase(unsigned int n);
+int		print_hexadecimal_lowercase(o_list *flags, unsigned int n);
+int		print_hexadecimal_uppercase(o_list *flags, unsigned int n);
 
 #endif

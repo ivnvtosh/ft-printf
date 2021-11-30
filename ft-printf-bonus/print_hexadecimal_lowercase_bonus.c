@@ -12,8 +12,20 @@
 
 #include "printf_bonus.h"
 
-int	print_hexadecimal_lowercase(unsigned int n)
+int	print_hexadecimal_lowercase(o_list *flags, unsigned int n)
 {
+	if (n == 0)
+	{
+		flags->hashtag = 0;
+		return (print_char('0'));
+	}
+	if (flags->hashtag == 1)
+		ft_putstr_fd("0x", 1);
 	print_number("0123456789abcdef", n, 16);
+	if (flags->hashtag == 1)
+	{
+		flags->hashtag = 0;
+		return (nbrlen(n, 16) + 2);
+	}
 	return (nbrlen(n, 16));
 }

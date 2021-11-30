@@ -12,7 +12,7 @@
 
 #include "printf_bonus.h"
 
-int	format_specifier(const char **ps, char c, va_list ap)
+int	format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 {
 	int	count;
 
@@ -30,28 +30,43 @@ int	format_specifier(const char **ps, char c, va_list ap)
 	else if (c == 'u')
 		count = print_unsigned_decimal(va_arg(ap, unsigned int));
 	else if (c == 'x')
-		count = print_hexadecimal_lowercase(va_arg(ap, unsigned int));
+		count = print_hexadecimal_lowercase(flags, va_arg(ap, unsigned int));
 	else if (c == 'X')
-		count = print_hexadecimal_uppercase(va_arg(ap, unsigned int));
+		count = print_hexadecimal_uppercase(flags, va_arg(ap, unsigned int));
 	else if (c == '%')
 		count = print_char('%');
 	else
 		*ps -= 1;
-	*ps += 2;
+	*ps += 1;
 	return (count);
+}
+
+int	check_flag(const char **ps, o_list *flags, va_list ap)
+{
+	*ps += 1;
+	if (**ps == '#')
+	{
+		*ps += 1;
+		flags->hashtag = 1;
+	}
+	return (format_specifier(ps, **ps, flags, ap));
 }
 
 int	ft_printf(const char *s, ...)
 {
+	o_list	*flags;
 	va_list	ap;
 	int		count;
 
+	flags = ft_calloc(1, sizeof(o_list));
+	if (flags == NULL)
+		return (0);
 	va_start(ap, s);
 	count = 0;
 	while (*s)
 	{
 		if (*s == '%')
-			count += format_specifier(&s, *(s + 1), ap);
+			count += check_flag(&s, flags, ap);
 		else
 			count += print_part(&s);
 	}
