@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_string.c                                     :+:      :+:    :+:   */
+/*   print_decimal_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 14:54:15 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/24 14:54:17 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/30 17:59:02 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/30 17:59:05 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft/libft.h"
+#include "printf_bonus.h"
 
-int	print_string(char *s)
+int	print_decimal(long n)
 {
-	if (s == NULL)
-		return (print_string("(null)"));
-	ft_putstr_fd(s, 1);
-	return (ft_strlen(s));
+	int	len;
+
+	len = 0;
+	if (n < 0)
+	{
+		len = print_char('-');
+		n = -n;
+	}
+	len += nbrlen(n, 10);
+	print_number("0123456789", n, 10);
+	return (len);
 }

@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_utils.c                                     :+:      :+:    :+:   */
+/*   print_string_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 17:02:43 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/24 17:03:21 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/30 18:00:14 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/30 18:00:15 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft/libft.h"
+#include "printf_bonus.h"
 
-int	nbrlen(unsigned long n, int mode)
+int	print_string(char *s)
 {
-	int	count;
-
-	if (n == 0)
-		return (1);
-	count = 0;
-	while (n)
-	{
-		n /= mode;
-		count++;
-	}
-	return (count);
+	if (s == NULL)
+		return (print_string("(null)"));
+	ft_putstr_fd(s, 1);
+	return (ft_strlen(s));
 }

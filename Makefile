@@ -11,20 +11,34 @@
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
-LIBFT	=	libft/libft.a
-HEADER	=	printf.h
+HEADER	=	ft-printf/printf.h
+HEADER_B=	ft-printf-bonus/printf_bonus.h
 
-SRCS	=	print_char.c					\
-			print_decimal.c					\
-			print_hexadecimal_lowercase.c	\
-			print_hexadecimal_uppercase.c	\
-			print_number.c					\
-			print_part.c					\
-			print_pointer.c					\
-			print_string.c					\
-			print_unsigned_decimal.c		\
-			printf_utils.c					\
-			ft_printf.c
+LIBFT	=	libft/libft.a
+
+SRCS	=	ft-printf/print_char.c					\
+			ft-printf/print_decimal.c				\
+			ft-printf/print_hexadecimal_lowercase.c	\
+			ft-printf/print_hexadecimal_uppercase.c	\
+			ft-printf/print_number.c				\
+			ft-printf/print_part.c					\
+			ft-printf/print_pointer.c				\
+			ft-printf/print_string.c				\
+			ft-printf/print_unsigned_decimal.c		\
+			ft-printf/printf_utils.c				\
+			ft-printf/ft_printf.c
+
+SRCS_B	=	ft-printf-bonus/print_char_bonus.c						\
+			ft-printf-bonus/print_decimal_bonus.c					\
+			ft-printf-bonus/print_hexadecimal_lowercase_bonus.c		\
+			ft-printf-bonus/print_hexadecimal_uppercase_bonus.c		\
+			ft-printf-bonus/print_number_bonus.c					\
+			ft-printf-bonus/print_part_bonus.c						\
+			ft-printf-bonus/print_pointer_bonus.c					\
+			ft-printf-bonus/print_string_bonus.c					\
+			ft-printf-bonus/print_unsigned_decimal_bonus.c			\
+			ft-printf-bonus/printf_utils_bonus.c					\
+			ft-printf-bonus/ft_printf_bonus.c
 
 CC		=	gcc
 FLAGS	=	-Wall -Wextra -Werror
@@ -33,11 +47,17 @@ RM		=	rm -f
 
 OBJS	=	$(SRCS:.c=.o)
 
+OBJS_B	=	$(SRCS_B:.c=.o)
+
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS) $(LIBFT)
 			cp $(LIBFT) $(NAME) 
 			ar crs $(NAME) $(OBJS)
+
+bonus	:	$(OBJS) $(LIBFT) $(OBJS_B) 
+			cp $(LIBFT) $(NAME) 
+			ar crs $(NAME) $(OBJS) $(OBJS_B)
 
 $(LIBFT):
 			make -C libft
@@ -45,13 +65,16 @@ $(LIBFT):
 
 %.o		:	%.c $(HEADER)
 			$(CC) -o $(FLAGS) -c $< -o $@
+		
+%_bonus.o:	%_bonus.c $(HEADER_B)
+			$(CC) -o $(FLAGS) -c $< -o $@
 
 clean	:
-			$(RM) $(OBJS)
+			$(RM) $(OBJS) $(OBJS_B)
 
 fclean	:	clean
 			$(RM) $(NAME)
 
 re		:	fclean all
 
-.PHONY	:	all clean fclean re
+.PHONY	:	all clean fclean re bonus

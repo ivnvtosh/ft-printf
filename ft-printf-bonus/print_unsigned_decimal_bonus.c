@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_decimal.c                                    :+:      :+:    :+:   */
+/*   print_unsigned_decimal_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 15:00:30 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/24 15:00:43 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/30 18:00:23 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/30 18:00:24 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft/libft.h"
+#include "printf_bonus.h"
 
-int	print_decimal(long n)
+int	print_unsigned_decimal(unsigned int n)
 {
-	int	len;
-
-	len = 0;
-	if (n < 0)
-	{
-		len = print_char('-');
-		n = -n;
-	}
-	len += nbrlen(n, 10);
 	print_number("0123456789", n, 10);
-	return (len);
+	return (nbrlen(n, 10));
 }

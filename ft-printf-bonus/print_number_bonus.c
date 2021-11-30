@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_pointer.c                                    :+:      :+:    :+:   */
+/*   print_number_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 14:54:53 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/24 14:54:54 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/30 17:59:44 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/30 17:59:45 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft/libft.h"
+#include "printf_bonus.h"
 
-int	print_pointer(unsigned long n)
+void	print_number(char *s, unsigned long n, unsigned long mode)
 {
-	ft_putstr_fd("0x", 1);
-	print_number("0123456789abcdef", n, 16);
-	return (nbrlen(n, 16) + 2);
+	if (n < mode)
+		ft_putchar_fd(s[n], 1);
+	else
+	{
+		print_number(s, n / mode, mode);
+		print_number(s, n % mode, mode);
+	}
 }

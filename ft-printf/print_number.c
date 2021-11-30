@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_unsigned_decimal.c                           :+:      :+:    :+:   */
+/*   print_number.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 15:04:18 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/24 15:04:19 by ccamie           ###   ########.fr       */
+/*   Created: 2021/11/24 15:12:34 by ccamie            #+#    #+#             */
+/*   Updated: 2021/11/24 15:14:17 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include "libft/libft.h"
 
-int	print_unsigned_decimal(unsigned int n)
+void	print_number(char *s, unsigned long n, unsigned long mode)
 {
-	print_number("0123456789", n, 10);
-	return (nbrlen(n, 10));
+	if (n < mode)
+		ft_putchar_fd(s[n], 1);
+	else
+	{
+		print_number(s, n / mode, mode);
+		print_number(s, n % mode, mode);
+	}
 }
