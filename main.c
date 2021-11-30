@@ -21,8 +21,8 @@ int	main(void)
 	//    printf("   printf -> %+10d <-\n", 123);
 	// ft_printf("ft_printf -> %+10d <-\n", 123);
 
-	   printf("   printf -> %d %d %d <-\n", 10, 1234567, 1423);
-	ft_printf("ft_printf -> %d %d %d <-\n", 10, 1234567, 1423);
+	   printf("   printf -> %d %d %d <-\n", -1, -101, 1423);
+	ft_printf("ft_printf -> %d %d %d <-\n", -1, -101, 1423);
 
 	// printf("   printf -> %0d <-\n", 1);
 	// ft_printf("ft_printf -> %0d <-\n", 1);

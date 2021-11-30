@@ -17,12 +17,13 @@ int	print_decimal(long n)
 {
 	int	len;
 
-	len = nbrlen(n, 10);
+	len = 0;
 	if (n < 0)
 	{
-		len += print_char('-');
+		len = print_char('-');
 		n = -n;
 	}
+	len += nbrlen(n, 10);
 	print_number("0123456789", n, 10);
 	return (len);
 }
