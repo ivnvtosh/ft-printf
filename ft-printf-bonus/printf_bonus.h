@@ -18,18 +18,18 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-int		ft_printf_bonus(const char *s, ...);
+int		ft_printf(const char *s, ...);
 
-int		print_part_bonus(const char **ps);
-void	print_number_bonus(char *s, unsigned long n, unsigned long mode);
-int		nbrlen_bonus(unsigned long n, int mode);
+int		print_part(const char **ps);
+void	print_number(char *s, unsigned long n, unsigned long mode);
+int		nbrlen(unsigned long n, int mode);
 
-int		print_char_bonus(char c);
-int		print_string_bonus(char *s);
-int		print_pointer_bonus(unsigned long int n);
-int		print_decimal_bonus(long n);
-int		print_unsigned_decimal_bonus(unsigned int n);
-int		print_hexadecimal_lowercase_bonus(unsigned int n);
-int		print_hexadecimal_uppercase_bonus(unsigned int n);
+int		print_char(char c);
+int		print_string(char *s);
+int		print_pointer(unsigned long int n);
+int		print_decimal(long n);
+int		print_unsigned_decimal(unsigned int n);
+int		print_hexadecimal_lowercase(unsigned int n);
+int		print_hexadecimal_uppercase(unsigned int n);
 
 #endif
