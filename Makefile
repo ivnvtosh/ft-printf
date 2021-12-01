@@ -19,12 +19,12 @@ LIBFT	=	libft/libft.a
 all		:	$(NAME)
 
 $(NAME)	:	$(LIBFT) $(MAIN) $(NAME)
-			cp $(LIBFT) $(MAIN) $(NAME) 
-			ar crs $(NAME)
+			cp $(MAIN) $(NAME) 
+			ar crs $(NAME) $(MAIN)
 
-bonus	:	fclean $(LIBFT) $(BONUS)
-			cp $(LIBFT) $(BONUS) $(NAME) 
-			ar crs $(NAME)
+bonus	:	$(LIBFT) $(BONUS) $(NAME)
+			cp $(BONUS) $(NAME) 
+			ar crs $(NAME) $(BONUS)
 
 $(MAIN)	:
 			make -C ft-printf
