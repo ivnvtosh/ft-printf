@@ -14,18 +14,15 @@
 
 int	print_hexadecimal_lowercase(o_list *flags, unsigned int n)
 {
-	if (n == 0)
+	if (flags->hashtag == 1)
 	{
 		flags->hashtag = 0;
-		return (print_char('0'));
-	}
-	if (flags->hashtag == 1)
+		if (n == 0)
+			return (print_char(flags, '0'));
 		ft_putstr_fd("0x", 1);
-	print_number("0123456789abcdef", n, 16);
-	if (flags->hashtag == 1)
-	{
-		flags->hashtag = 0;
+		print_number("0123456789abcdef", n, 16);
 		return (nbrlen(n, 16) + 2);
 	}
+	print_number("0123456789abcdef", n, 16);
 	return (nbrlen(n, 16));
 }

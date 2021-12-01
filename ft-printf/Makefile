@@ -10,39 +10,44 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libftprintf.a
+NAME	=	libftprintfmainpart.a
+HEADER	=	printf.h
 
-MAIN	=	ft-printf/libftprintfmainpart.a
-BONUS	=	ft-printf-bonus/libftprintfbonuspart.a
-LIBFT	=	libft/libft.a
+LIBFT	=	../libft/libft.a
+
+SRCS	=	print_char.c					\
+			print_decimal.c					\
+			print_hexadecimal_lowercase.c	\
+			print_hexadecimal_uppercase.c	\
+			print_number.c					\
+			print_part.c					\
+			print_pointer.c					\
+			print_string.c					\
+			print_unsigned_decimal.c		\
+			printf_utils.c					\
+			ft_printf.c
+
+CC		=	gcc
+FLAGS	=	-Wall -Wextra -Werror
+OPTION	=	-c -I $(HEADER)
+RM		=	rm -f
+
+OBJS	=	$(SRCS:.c=.o)
 
 all		:	$(NAME)
 
-$(NAME)	:	$(LIBFT) $(MAIN) $(NAME)
-			cp $(LIBFT) $(MAIN) $(NAME) 
-			ar crs $(NAME)
+$(NAME)	:	$(OBJS) $(LIBFT)
+			cp $(LIBFT) $(NAME) 
+			ar crs $(NAME) $(OBJS)
 
-bonus	:	fclean $(LIBFT) $(BONUS)
-			cp $(LIBFT) $(BONUS) $(NAME) 
-			ar crs $(NAME)
-
-$(MAIN)	:
-			make -C ft-printf
-
-$(BONUS):
-			make -C ft-printf-bonus
-
-$(LIBFT):
-			make -C libft
-			make -C libft clean
+%.o		:	%.c $(HEADER)
+			$(CC) -o $(FLAGS) -c $< -o $@
 
 clean	:
-			make -C ft-printf clean
-			make -C ft-printf-bonus clean
+			$(RM) $(OBJS)
 
 fclean	:	clean
-			make -C ft-printf fclean
-			make -C ft-printf-bonus fclean
+			$(RM) $(NAME)
 
 re		:	fclean all
 

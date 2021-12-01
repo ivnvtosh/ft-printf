@@ -18,15 +18,15 @@ int	format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 
 	count = 0;
 	if (c == 'c')
-		count = print_char(va_arg(ap, int));
+		count = print_char(flags, va_arg(ap, int));
 	else if (c == 's')
 		count = print_string(va_arg(ap, char *));
 	else if (c == 'p')
 		count = print_pointer((unsigned long)va_arg(ap, void *));
 	else if (c == 'd')
-		count = print_decimal(va_arg(ap, int));
+		count = print_decimal(flags, va_arg(ap, int));
 	else if (c == 'i')
-		count = print_decimal(va_arg(ap, int));
+		count = print_decimal(flags, va_arg(ap, int));
 	else if (c == 'u')
 		count = print_unsigned_decimal(va_arg(ap, unsigned int));
 	else if (c == 'x')
@@ -34,7 +34,7 @@ int	format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 	else if (c == 'X')
 		count = print_hexadecimal_uppercase(flags, va_arg(ap, unsigned int));
 	else if (c == '%')
-		count = print_char('%');
+		count = print_char(flags, '%');
 	else
 		*ps -= 1;
 	*ps += 1;
@@ -46,8 +46,18 @@ int	check_flag(const char **ps, o_list *flags, va_list ap)
 	*ps += 1;
 	if (**ps == '#')
 	{
-		*ps += 1;
 		flags->hashtag = 1;
+		*ps += 1;
+	}
+	if (**ps == '-' || ft_isdigit(**ps))
+	{
+		while (*(*ps + 1) == '-')
+			*ps += 1;
+		flags->width = ft_atoi(*ps);
+		if (**ps == '-')
+			*ps += 1;
+		while (ft_isdigit(**ps) && **ps)
+			*ps += 1;
 	}
 	return (format_specifier(ps, **ps, flags, ap));
 }
@@ -71,5 +81,6 @@ int	ft_printf(const char *s, ...)
 			count += print_part(&s);
 	}
 	va_end(ap);
+	free(flags);
 	return (count);
 }

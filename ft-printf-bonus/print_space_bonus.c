@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_hexadecimal_uppercase_bonus.c                :+:      :+:    :+:   */
+/*   print_space_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 17:59:34 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/30 17:59:36 by ccamie           ###   ########.fr       */
+/*   Created: 2021/12/01 19:34:42 by ccamie            #+#    #+#             */
+/*   Updated: 2021/12/01 19:34:46 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf_bonus.h"
 
-int	print_hexadecimal_uppercase(o_list *flags, unsigned int n)
+int	print_space(int count)
 {
-	if (flags->hashtag == 1)
+	int	len;
+
+	len = count;
+	while (count)
 	{
-		flags->hashtag = 0;
-		if (n == 0)
-			return (print_char(flags, '0'));
-		ft_putstr_fd("0X", 1);
-		print_number("0123456789ABCDEF", n, 16);
-		return (nbrlen(n, 16) + 2);
+		ft_putchar_fd(' ', 1);
+		count--;
 	}
-	print_number("0123456789ABCDEF", n, 16);
-	return (nbrlen(n, 16));
+	return (len);
 }

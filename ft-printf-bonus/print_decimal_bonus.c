@@ -12,14 +12,14 @@
 
 #include "printf_bonus.h"
 
-int	print_decimal(long n)
+int	print_decimal(o_list *flags, long n)
 {
 	int	len;
 
 	len = 0;
 	if (n < 0)
 	{
-		len = print_char('-');
+		len = print_char(flags, '-');
 		n = -n;
 	}
 	len += nbrlen(n, 10);
