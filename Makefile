@@ -11,38 +11,66 @@
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
+HEADER	=	ft-printf/printf.h
+HEADER_B=	ft-printf-bonus/printf_bonus.h
 
-MAIN	=	ft-printf/libftprintfmainpart.a
-BONUS	=	ft-printf-bonus/libftprintfbonuspart.a
 LIBFT	=	libft/libft.a
+
+SRCS	=	ft-printf/print_char.c					\
+			ft-printf/print_decimal.c				\
+			ft-printf/print_hexadecimal_lowercase.c	\
+			ft-printf/print_hexadecimal_uppercase.c	\
+			ft-printf/print_number.c				\
+			ft-printf/print_part.c					\
+			ft-printf/print_pointer.c				\
+			ft-printf/print_string.c				\
+			ft-printf/print_unsigned_decimal.c		\
+			ft-printf/printf_utils.c				\
+			ft-printf/ft_printf.c
+
+SRCS_B	=	ft-printf-bonus/print_char_bonus.c						\
+			ft-printf-bonus/print_decimal_bonus.c					\
+			ft-printf-bonus/print_hexadecimal_lowercase_bonus.c		\
+			ft-printf-bonus/print_hexadecimal_uppercase_bonus.c		\
+			ft-printf-bonus/print_number_bonus.c					\
+			ft-printf-bonus/print_part_bonus.c						\
+			ft-printf-bonus/print_pointer_bonus.c					\
+			ft-printf-bonus/print_string_bonus.c					\
+			ft-printf-bonus/print_unsigned_decimal_bonus.c			\
+			ft-printf-bonus/printf_utils_bonus.c					\
+			ft-printf-bonus/ft_printf_bonus.c
+
+CC		=	gcc
+FLAGS	=	-Wall -Wextra -Werror
+OPTION	=	-c -I $(HEADER)
+RM		=	rm -f
+
+OBJS	=	$(SRCS:.c=.o)
+
+OBJS_B	=	$(SRCS_B:.c=.o)
 
 all		:	$(NAME)
 
-$(NAME)	:	$(LIBFT) $(MAIN) $(NAME)
-			cp $(MAIN) $(NAME) 
-			ar crs $(NAME) $(MAIN)
+$(NAME)	:	$(OBJS) $(LIBFT)
+			cp $(LIBFT) $(NAME) 
+			ar crs $(NAME) $(OBJS)
 
-bonus	:	$(LIBFT) $(BONUS) $(NAME)
-			cp $(BONUS) $(NAME) 
-			ar crs $(NAME) $(BONUS)
-
-$(MAIN)	:
-			make -C ft-printf
-
-$(BONUS):
-			make -C ft-printf-bonus
+bonus	:	$(OBJS) $(LIBFT) $(OBJS_B) 
+			cp $(LIBFT) $(NAME) 
+			ar crs $(NAME) $(OBJS) $(OBJS_B)
 
 $(LIBFT):
 			make -C libft
 			make -C libft clean
 
+%.o		:	%.c $(HEADER) $(HEADER_B)
+			$(CC) -o $(FLAGS) -c $< -o $@
+
 clean	:
-			make -C ft-printf clean
-			make -C ft-printf-bonus clean
+			$(RM) $(OBJS) $(OBJS_B)
 
 fclean	:	clean
-			make -C ft-printf fclean
-			make -C ft-printf-bonus fclean
+			$(RM) $(NAME)
 
 re		:	fclean all
 
