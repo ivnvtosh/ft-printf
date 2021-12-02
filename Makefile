@@ -38,6 +38,7 @@ SRCS_B	=	ft-printf-bonus/print_char_bonus.c						\
 			ft-printf-bonus/print_string_bonus.c					\
 			ft-printf-bonus/print_unsigned_decimal_bonus.c			\
 			ft-printf-bonus/printf_utils_bonus.c					\
+			ft-printf-bonus/print_space_bonus.c						\
 			ft-printf-bonus/ft_printf_bonus.c
 
 CC		=	gcc
@@ -51,13 +52,14 @@ OBJS_B	=	$(SRCS_B:.c=.o)
 
 all		:	$(NAME)
 
-$(NAME)	:	$(OBJS) $(LIBFT)
+$(NAME)	:	$(LIBFT) $(OBJS)
 			cp $(LIBFT) $(NAME) 
 			ar crs $(NAME) $(OBJS)
 
-bonus	:	$(OBJS) $(LIBFT) $(OBJS_B) 
+bonus	:	$(LIBFT) $(OBJS_B) 
+			$(RM) $(NAME)
 			cp $(LIBFT) $(NAME) 
-			ar crs $(NAME) $(OBJS) $(OBJS_B)
+			ar crs $(NAME) $(OBJS_B)
 
 $(LIBFT):
 			make -C libft

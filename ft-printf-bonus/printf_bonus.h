@@ -25,6 +25,7 @@ typedef struct o_list
 	int	space;
 	int	space_or_zero;
 	int	width;
+	int	point;
 	int	precision;
 }	o_list;
 
@@ -35,10 +36,10 @@ void	print_number(char *s, unsigned long n, unsigned long mode);
 int		nbrlen(unsigned long n, int mode);
 
 int		print_char(o_list *flags, char c);
-int		print_string(char *s);
-int		print_pointer(unsigned long int n);
+int		print_string(o_list *flags, char *s);
+int		print_pointer(o_list *flags, unsigned long int n);
 int		print_decimal(o_list *flags, long n);
-int		print_unsigned_decimal(unsigned int n);
+int		print_unsigned_decimal(o_list *flags, unsigned int n);
 int		print_hexadecimal_lowercase(o_list *flags, unsigned int n);
 int		print_hexadecimal_uppercase(o_list *flags, unsigned int n);
 

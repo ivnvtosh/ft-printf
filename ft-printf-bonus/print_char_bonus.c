@@ -14,24 +14,27 @@
 
 int	print_char(o_list *flags, char c)
 {
+	int	count;
 	int	len;
 
 	len = 1;
 	if (flags->width > 0)
 	{
-		len = flags->width;
-		print_space(len - 1);
+		count = flags->width;
+		print_space(count - len);
 		ft_putchar_fd(c, 1);
-		flags->width = 0;
 	}
 	else if (flags->width < 0)
 	{
-		len = flags->width * -1;
+		count = flags->width * -1;
 		ft_putchar_fd(c, 1);
-		print_space(len - 1);
-		flags->width = 0;
+		print_space(count - len);
 	}
 	else
+	{
+		count = len;
 		ft_putchar_fd(c, 1);
-	return (len);
+	}
+	flags->width = 0;
+	return (count);
 }

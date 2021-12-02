@@ -12,8 +12,9 @@
 
 #include "printf_bonus.h"
 
-int	print_pointer(unsigned long n)
+int	print_pointer(o_list *flags, unsigned long n)
 {
+	(void)flags;
 	ft_putstr_fd("0x", 1);
 	print_number("0123456789abcdef", n, 16);
 	return (nbrlen(n, 16) + 2);

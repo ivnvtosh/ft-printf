@@ -16,6 +16,7 @@ int	print_decimal(o_list *flags, long n)
 {
 	int	len;
 
+	(void)flags;
 	len = 0;
 	if (n < 0)
 	{

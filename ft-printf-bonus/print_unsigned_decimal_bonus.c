@@ -12,8 +12,9 @@
 
 #include "printf_bonus.h"
 
-int	print_unsigned_decimal(unsigned int n)
+int	print_unsigned_decimal(o_list *flags, unsigned int n)
 {
+	(void)flags;
 	print_number("0123456789", n, 10);
 	return (nbrlen(n, 10));
 }

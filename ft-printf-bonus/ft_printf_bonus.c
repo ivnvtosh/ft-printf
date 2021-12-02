@@ -20,15 +20,15 @@ int	format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 	if (c == 'c')
 		count = print_char(flags, va_arg(ap, int));
 	else if (c == 's')
-		count = print_string(va_arg(ap, char *));
+		count = print_string(flags, va_arg(ap, char *));
 	else if (c == 'p')
-		count = print_pointer((unsigned long)va_arg(ap, void *));
+		count = print_pointer(flags, (unsigned long)va_arg(ap, void *));
 	else if (c == 'd')
 		count = print_decimal(flags, va_arg(ap, int));
 	else if (c == 'i')
 		count = print_decimal(flags, va_arg(ap, int));
 	else if (c == 'u')
-		count = print_unsigned_decimal(va_arg(ap, unsigned int));
+		count = print_unsigned_decimal(flags,va_arg(ap, unsigned int));
 	else if (c == 'x')
 		count = print_hexadecimal_lowercase(flags, va_arg(ap, unsigned int));
 	else if (c == 'X')
@@ -54,6 +54,16 @@ int	check_flag(const char **ps, o_list *flags, va_list ap)
 		while (*(*ps + 1) == '-')
 			*ps += 1;
 		flags->width = ft_atoi(*ps);
+		if (**ps == '-')
+			*ps += 1;
+		while (ft_isdigit(**ps) && **ps)
+			*ps += 1;
+	}
+	if (**ps == '.')
+	{
+		flags->point = 1;
+		*ps += 1;
+		flags->precision = ft_atoi(*ps);
 		if (**ps == '-')
 			*ps += 1;
 		while (ft_isdigit(**ps) && **ps)
