@@ -26,3 +26,19 @@ int	nbrlen(unsigned long n, int mode)
 	}
 	return (count);
 }
+
+void	print_sign(o_list *flags)
+{
+	if (flags->sign)
+		ft_putchar_fd(flags->sign, 1);
+}
+
+void	print_width(o_list *flags)
+{
+	print_space(flags->width, flags->fill);
+}
+
+void	print_precision(o_list *flags)
+{
+	print_space(flags->precision, '0');
+}

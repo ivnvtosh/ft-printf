@@ -39,6 +39,7 @@ SRCS_B	=	ft-printf-bonus/print_char_bonus.c						\
 			ft-printf-bonus/print_unsigned_decimal_bonus.c			\
 			ft-printf-bonus/printf_utils_bonus.c					\
 			ft-printf-bonus/print_space_bonus.c						\
+			ft-printf-bonus/variant_decimal.c						\
 			ft-printf-bonus/ft_printf_bonus.c
 
 CC		=	gcc

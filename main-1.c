@@ -10,7 +10,7 @@ int	main(void)
 	if (p == NULL)
 		return (-1);
 	
-	d = -123;
+	d = 123;
 
 	// printf("   printf -> %123d <-\n", 1);
 	// ft_printf("ft_printf -> %123d <-\n", 1);

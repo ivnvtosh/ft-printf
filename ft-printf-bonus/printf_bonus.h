@@ -44,4 +44,13 @@ int		print_hexadecimal_lowercase(o_list *flags, unsigned int n);
 int		print_hexadecimal_uppercase(o_list *flags, unsigned int n);
 
 int		print_space(int count, char c);
+void	print_sign(o_list *flags);
+void	print_width(o_list *flags);
+void	print_precision(o_list *flags);
+
+void	variant_1(o_list *flags);
+void	variant_2(o_list *flags, unsigned int n);
+void	variant_3(o_list *flags, unsigned int n);
+void	variant_4(o_list *flags, unsigned int n);
+void	variant_5(o_list *flags, unsigned int n);
 #endif
