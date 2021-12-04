@@ -12,14 +12,14 @@
 
 #include "printf_bonus.h"
 
-int	print_space(int count)
+int	print_space(int count, char c)
 {
 	int	len;
 
 	len = count;
-	while (count)
+	while (count > 0)
 	{
-		ft_putchar_fd(' ', 1);
+		ft_putchar_fd(c, 1);
 		count--;
 	}
 	return (len);

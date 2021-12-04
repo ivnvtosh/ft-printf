@@ -1,8 +1,6 @@
 .DS_Store
 .vscode
 .idea
-main.c
-run.sh
 test-1
 test-2
 test-3

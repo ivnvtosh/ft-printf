@@ -20,10 +20,10 @@
 
 typedef struct o_list
 {
+	int	space;
 	int	hashtag;
 	int	sign;
-	int	space;
-	int	space_or_zero;
+	int	fill;
 	int	width;
 	int	point;
 	int	precision;
@@ -43,5 +43,5 @@ int		print_unsigned_decimal(o_list *flags, unsigned int n);
 int		print_hexadecimal_lowercase(o_list *flags, unsigned int n);
 int		print_hexadecimal_uppercase(o_list *flags, unsigned int n);
 
-int		print_space(int count);
+int		print_space(int count, char c);
 #endif

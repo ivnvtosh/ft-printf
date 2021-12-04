@@ -12,14 +12,14 @@
 
 #include "printf_bonus.h"
 
-int	getslen(int width, int slen)
+static int	getslen(int width, int slen)
 {
 	if (width > slen)
 			return (width);
 	return (slen);
 }
 
-void	print_precision(char *s, int precision, int slen)
+static void	print_precision(char *s, int precision, int slen)
 {
 	if (precision > slen)
 		ft_putstr_fd(s, 1);
@@ -36,7 +36,7 @@ int	ft_ft(o_list *flags, char *s, int slen)
 	if (flags->width > 0)
 	{
 		count = getslen(flags->width, slen);
-		print_space(count - slen);
+		print_space(count - slen, ' ');
 		print_precision(s, flags->precision, slen);
 	}
 	else if (flags->width < 0)
@@ -44,9 +44,9 @@ int	ft_ft(o_list *flags, char *s, int slen)
 		count = getslen(flags->width * -1, slen);
 		print_precision(s, flags->precision, slen);
 		if (flags->precision && flags->precision < slen)
-			print_space(count - flags->precision);
+			print_space(count - flags->precision, ' ');
 		else
-			print_space(count - slen);
+			print_space(count - slen, ' ');
 	}
 	else if (flags->precision && flags->precision < slen)
 	{
@@ -72,6 +72,10 @@ int	print_string(o_list *flags, char *s)
 		return (print_string(flags, "(null)"));
 	slen = ft_strlen(s);
 	count = ft_ft(flags, s, slen);
+	flags->hashtag = 0;
+	flags->sign = 0;
+	flags->space = 0;
+	flags->fill = 0;
 	flags->width = 0;
 	flags->point = 0;
 	flags->precision = 0;

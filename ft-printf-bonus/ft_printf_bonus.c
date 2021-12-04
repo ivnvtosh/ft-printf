@@ -36,19 +36,30 @@ int	format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 	else if (c == '%')
 		count = print_char(flags, '%');
 	else
-		*ps -= 1;
+		return (0);
 	*ps += 1;
 	return (count);
+}
+int	cheching_flag(char c, o_list *flags)
+{
+	if (c == ' ')
+		flags->space = 1;
+	else if (c == '#')
+		flags->hashtag = 1;
+	else if (c == '+')
+		flags->sign = '+';
+	else if (c == '0')
+		flags->fill = '0';
+	else
+		return (0);
+	return (1);
 }
 
 int	check_flag(const char **ps, o_list *flags, va_list ap)
 {
 	*ps += 1;
-	if (**ps == '#')
-	{
-		flags->hashtag = 1;
-		*ps += 1;
-	}
+	while (ft_strchr(" #+0", **ps))
+		*ps += cheching_flag(**ps, flags);
 	if (**ps == '-' || ft_isdigit(**ps))
 	{
 		while (*(*ps + 1) == '-')
@@ -64,8 +75,6 @@ int	check_flag(const char **ps, o_list *flags, va_list ap)
 		flags->point = 1;
 		*ps += 1;
 		flags->precision = ft_atoi(*ps);
-		if (**ps == '-')
-			*ps += 1;
 		while (ft_isdigit(**ps) && **ps)
 			*ps += 1;
 	}
