@@ -36,7 +36,10 @@ int	format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 	else if (c == '%')
 		count = print_char(flags, '%');
 	else
+	{
+		ft_bzero(flags, sizeof(o_list));
 		return (0);
+	}
 	*ps += 1;
 	return (count);
 }
@@ -51,10 +54,7 @@ int	cheching_flag(char c, o_list *flags)
 	else if (c == '0')
 		flags->fill = '0';
 	else
-	{
-		ft_bzero(flags, sizeof(o_list));
 		return (0);
-	}
 	return (1);
 }
 

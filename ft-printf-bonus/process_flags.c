@@ -26,10 +26,14 @@ static void	process_width(o_list *flags, int nlen)
 	}
 	else
 		flags->width = 0;
-	if (flags->width > 0 && flags->sign)
+	if (flags->width > 0 && (flags->sign || flags->space))
 		flags->width -= 1;
-    if (flags->width < 0 && flags->sign)
+    if (flags->width < 0 && (flags->sign || flags->space))
 		flags->width += 1;
+	if (flags->width > 0 && flags->hashtag)
+		flags->width -= 2;
+    if (flags->width < 0 && flags->hashtag)
+		flags->width += 2;
 }
 
 static void	process_precision(o_list *flags, int nlen)
@@ -40,11 +44,11 @@ static void	process_precision(o_list *flags, int nlen)
 		flags->precision = 0;
 }
 
-void	process_flags(o_list *flags, unsigned int n)
+void	process_flags(o_list *flags, unsigned long n, int mode)
 {
 	int	nlen;
 
-	nlen = nbrlen(n, 10);
+	nlen = nbrlen(n, mode);
 	process_fill(flags);
 	process_width(flags, nlen);
 	process_precision(flags, nlen);

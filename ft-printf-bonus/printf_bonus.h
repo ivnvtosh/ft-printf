@@ -43,7 +43,9 @@ int		print_unsigned_decimal(o_list *flags, unsigned int n);
 int		print_hexadecimal_lowercase(o_list *flags, unsigned int n);
 int		print_hexadecimal_uppercase(o_list *flags, unsigned int n);
 
-void	process_flags(o_list *flags, unsigned int n);
+int		getcount(o_list *flags, unsigned long n, int mode);
+void	process_flags(o_list *flags, unsigned long n, int mode);
+void	print_flag_nbr(o_list *flags, char *s, unsigned long n);
 
 int		print_space(int count, char c);
 void	print_sign(o_list *flags);
@@ -51,8 +53,8 @@ void	print_width(o_list *flags);
 void	print_precision(o_list *flags);
 
 void	variant_1(o_list *flags);
-void	variant_2(o_list *flags, char *s, unsigned int n);
-void	variant_3(o_list *flags, char *s, unsigned int n);
-void	variant_4(o_list *flags, char *s, unsigned int n);
-void	variant_5(o_list *flags, char *s, unsigned int n);
+void	variant_2(o_list *flags, char *s, unsigned long n);
+void	variant_3(o_list *flags, char *s, unsigned long n);
+void	variant_4(o_list *flags, char *s, unsigned long n);
+void	variant_5(o_list *flags, char *s, unsigned long n);
 #endif

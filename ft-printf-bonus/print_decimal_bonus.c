@@ -12,41 +12,6 @@
 
 #include "printf_bonus.h"
 
-static int	getcount(o_list *flags, unsigned int n)
-{
-	int	count;
-	int	nlen;
-	int	width;
-
-	width = flags->width;
-	nlen = nbrlen(n, 10);
-	if (width < 0)
-		width = -width;
-	if (flags->precision > nlen && flags->precision >= width)
-		count = flags->precision;
-	else if (width > nlen)
-		return (width);
-	else
-		count = nlen;
-	if (flags->sign)
-		count++;
-	return (count);
-}
-
-static void	print_flag_nbr(o_list *flags, char *s, unsigned int n)
-{
-	if (n == 0 && flags->point && flags->precision == 0)
-		variant_1(flags);
-	else if (flags->width > 0 && flags->fill == '0')
-		variant_2(flags, s, n);
-	else if (flags->width > 0)
-		variant_3(flags, s, n);
-	else if (flags->width < 0)
-		variant_4(flags, s, n);
-	else
-		variant_5(flags, s, n);
-}
-
 int	print_decimal(o_list *flags, long n)
 {
 	int	count;
@@ -58,8 +23,8 @@ int	print_decimal(o_list *flags, long n)
 		flags->sign = '-';
 		n = -n;
 	}
-	count = getcount(flags, n);
-	process_flags(flags, n);
+	count = getcount(flags, n, 10);
+	process_flags(flags, n, 10);
 	print_flag_nbr(flags, "0123456789", n);
 	ft_bzero(flags, sizeof(o_list));
 	return (count);

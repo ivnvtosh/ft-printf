@@ -14,8 +14,32 @@
 
 int	print_pointer(o_list *flags, unsigned long n)
 {
-	(void)flags;
-	ft_putstr_fd("0x", 1);
-	print_number("0123456789abcdef", n, 16);
-	return (nbrlen(n, 16) + 2);
+	int	nlen;
+	int	count;
+
+	if (flags->point && flags->precision == 0 && n == 0 && flags->width == 0)
+		return (0);
+	flags->hashtag = 1;
+	flags->fill = ' ';
+	nlen = nbrlen(n, 16) + 2;
+	if (flags->width > nlen)
+	{
+		count = flags->width;
+		flags->width -= nlen;
+		variant_3(flags, "0123456789abcdef", n);
+	}
+	else if (flags->width * -1 > nlen)
+	{
+		count = flags->width * -1;
+		flags->width += nlen;
+		variant_4(flags, "0123456789abcdef", n);
+	}
+	else
+	{
+		count = nlen;
+		flags->width = 0;
+		variant_5(flags, "0123456789abcdef", n);
+	}
+	ft_bzero(flags, sizeof(o_list));
+	return (count);
 }

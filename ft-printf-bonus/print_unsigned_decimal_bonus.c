@@ -14,7 +14,15 @@
 
 int	print_unsigned_decimal(o_list *flags, unsigned int n)
 {
-	(void)flags;
-	print_number("0123456789", n, 10);
-	return (nbrlen(n, 10));
+	int	count;
+
+	flags->sign = 0;
+	flags->hashtag = 0;
+	if (flags->point && flags->precision == 0 && n == 0 && flags->width == 0)
+		return (0);
+	count = getcount(flags, n, 10);
+	process_flags(flags, n, 10);
+	print_flag_nbr(flags, "0123456789", n);
+	ft_bzero(flags, sizeof(o_list));
+	return (count);
 }
