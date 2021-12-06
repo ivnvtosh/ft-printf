@@ -22,57 +22,29 @@ static int	getcount(o_list *flags, unsigned int n)
 	nlen = nbrlen(n, 10);
 	if (width < 0)
 		width = -width;
-	if (flags->precision >= width && flags->precision > nlen)
-		count = flags->precision + (flags->sign != 0);
+	if (flags->precision > nlen && flags->precision >= width)
+		count = flags->precision;
 	else if (width > nlen)
-		count = width;
+		return (width);
 	else
-		count = nlen + (flags->sign != 0);
+		count = nlen;
+	if (flags->sign)
+		count++;
 	return (count);
 }
 
-void	kek(o_list *flags, unsigned int n)
-{
-	int	nlen;
-	int	width;
-
-	nlen = nbrlen(n, 10);
-	if (flags->fill == 0 || flags->precision)
-		flags->fill = ' ';
-	if (flags->width > nlen && flags->width > flags->precision)
-	{
-		if (flags->precision > nlen)
-			flags->width = flags->width - flags->precision - (flags->sign != 0);
-		else
-			flags->width = flags->width - nlen - (flags->sign != 0);
-	}
-	else if (flags->width * -1 > nlen && flags->width * -1 > flags->precision)
-	{
-		if (flags->precision > nlen)
-			flags->width = flags->width + flags->precision + (flags->sign != 0);
-		else
-			flags->width = flags->width + nlen + (flags->sign != 0);
-	}
-	else
-		flags->width = 0;
-	if (flags->precision > nlen)
-		flags->precision = flags->precision - nlen;
-	else
-		flags->precision = 0;
-} 
-
-void	print_flag_nbr(o_list *flags, unsigned int n)
+static void	print_flag_nbr(o_list *flags, char *s, unsigned int n)
 {
 	if (n == 0 && flags->point && flags->precision == 0)
 		variant_1(flags);
 	else if (flags->width > 0 && flags->fill == '0')
-		variant_2(flags, n);
+		variant_2(flags, s, n);
 	else if (flags->width > 0)
-		variant_3(flags, n);
+		variant_3(flags, s, n);
 	else if (flags->width < 0)
-		variant_4(flags, n);
+		variant_4(flags, s, n);
 	else
-		variant_5(flags, n);
+		variant_5(flags, s, n);
 }
 
 int	print_decimal(o_list *flags, long n)
@@ -87,8 +59,8 @@ int	print_decimal(o_list *flags, long n)
 		n = -n;
 	}
 	count = getcount(flags, n);
-	kek(flags, n);
-	print_flag_nbr(flags, n);
+	process_flags(flags, n);
+	print_flag_nbr(flags, "0123456789", n);
 	ft_bzero(flags, sizeof(o_list));
 	return (count);
 }

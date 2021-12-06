@@ -21,34 +21,34 @@ void	variant_1(o_list *flags)
 	print_width(flags);
 }
 
-void	variant_2(o_list *flags, unsigned int n)
+void	variant_2(o_list *flags, char *s, unsigned int n)
 {
 	print_sign(flags);
 	print_width(flags);
 	print_precision(flags);
-	print_number("0123456789", n, 10);
+	print_number(s, n, ft_strlen(s));
 }
 
-void	variant_3(o_list *flags, unsigned int n)
+void	variant_3(o_list *flags, char *s, unsigned int n)
 {
 	print_width(flags);
 	print_sign(flags);
 	print_precision(flags);
-	print_number("0123456789", n, 10);
+	print_number(s, n, ft_strlen(s));
 }
 
-void	variant_4(o_list *flags, unsigned int n)
+void	variant_4(o_list *flags, char *s, unsigned int n)
 {
 	flags->width = -flags->width;
 	print_sign(flags);
 	print_precision(flags);
-	print_number("0123456789", n, 10);
+	print_number(s, n, ft_strlen(s));
 	print_width(flags);
 }
 
-void	variant_5(o_list *flags, unsigned int n)
+void	variant_5(o_list *flags, char *s, unsigned int n)
 {
 	print_sign(flags);
 	print_precision(flags);
-	print_number("0123456789", n, 10);
+	print_number(s, n, ft_strlen(s));
 }
