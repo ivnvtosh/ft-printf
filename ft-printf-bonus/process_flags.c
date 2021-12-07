@@ -10,6 +10,8 @@ static void	process_fill(o_list *flags)
 
 static void	process_width(o_list *flags, int nlen)
 {
+	if (flags->hashtag)
+		nlen += 2;
 	if (flags->width > nlen && flags->width > flags->precision)
 	{
 		if (flags->precision > nlen)
@@ -30,10 +32,6 @@ static void	process_width(o_list *flags, int nlen)
 		flags->width -= 1;
     if (flags->width < 0 && (flags->sign || flags->space))
 		flags->width += 1;
-	if (flags->width > 0 && flags->hashtag)
-		flags->width -= 2;
-    if (flags->width < 0 && flags->hashtag)
-		flags->width += 2;
 }
 
 static void	process_precision(o_list *flags, int nlen)

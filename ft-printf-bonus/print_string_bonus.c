@@ -12,9 +12,9 @@
 
 #include "printf_bonus.h"
 
-static int	getslen(int width, int slen)
+static int	getslen(o_list *flags, int width, int slen)
 {
-	if (width > slen)
+	if (width > slen || (flags->precision && flags->precision < slen))
 			return (width);
 	return (slen);
 }
@@ -35,13 +35,16 @@ int	ft_ft(o_list *flags, char *s, int slen)
 
 	if (flags->width > 0)
 	{
-		count = getslen(flags->width, slen);
-		print_space(count - slen, ' ');
+		count = getslen(flags, flags->width, slen);
+		if (flags->precision && flags->precision < slen)
+			print_space(count - flags->precision, ' ');
+		else
+			print_space(count - slen, ' ');
 		print_precision_str(s, flags->precision, slen);
 	}
 	else if (flags->width < 0)
 	{
-		count = getslen(flags->width * -1, slen);
+		count = getslen(flags, flags->width * -1, slen);
 		print_precision_str(s, flags->precision, slen);
 		if (flags->precision && flags->precision < slen)
 			print_space(count - flags->precision, ' ');
@@ -67,11 +70,16 @@ int	print_string(o_list *flags, char *s)
 	int	slen;
 
 	if (flags->point && flags->precision == 0)
-		return (0);
+	{
+		if (flags->width > 0)
+			print_space(flags->width, ' ');
+		if (flags->width < 0)
+		print_space(-flags->width, ' ');
+		return (flags->width);
+	}
 	if (s == NULL)
 		return (print_string(flags, "(null)"));
 	slen = ft_strlen(s);
 	count = ft_ft(flags, s, slen);
-	ft_bzero(flags, sizeof(o_list));
 	return (count);
 }

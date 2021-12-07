@@ -57,6 +57,8 @@ int	getcount(o_list *flags, unsigned long n, int mode)
 
 	width = flags->width;
 	nlen = nbrlen(n, mode);
+	if (flags->hashtag)
+		nlen += 2;
 	if (width < 0)
 		width = -width;
 	if (flags->precision > nlen && flags->precision >= width)
@@ -69,8 +71,6 @@ int	getcount(o_list *flags, unsigned long n, int mode)
 		count++;
 	if (flags->space && flags->sign == 0)
 		count++;
-	if (flags->hashtag)
-		count += 2;
 	return (count);
 }
 

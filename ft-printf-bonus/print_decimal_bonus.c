@@ -18,15 +18,17 @@ int	print_decimal(o_list *flags, long n)
 
 	if (flags->point && flags->precision == 0 && n == 0 && flags->width == 0)
 		return (0);
+	if (flags->point && flags->precision == 1 && n == 0)
+		return (print_char(flags, '0'));
 	if (n < 0)
 	{
 		flags->sign = '-';
 		n = -n;
 	}
+	flags->hashtag = 0;
 	count = getcount(flags, n, 10);
 	process_flags(flags, n, 10);
 	print_flag_nbr(flags, "0123456789", n);
-	ft_bzero(flags, sizeof(o_list));
 	return (count);
 }
 

@@ -12,7 +12,48 @@
 
 #include "printf_bonus.h"
 
-int	format_specifier(const char **ps, char c, o_list *flags, va_list ap)
+int	cheching_flag(const char **ps, o_list *flags)
+{
+	int	n;
+
+	if (**ps == '.')
+	{
+		flags->point = 1;
+		*ps += 1;
+	}
+	while (*(*ps + 1) == '-')
+		*ps += 1;
+	n = ft_atoi(*ps);
+	if (**ps == '-')
+		*ps += 1;
+	while (ft_isdigit(**ps) && **ps)
+		*ps += 1;
+	return (n);
+}
+
+void	check_flag(const char **ps, o_list *flags)
+{
+	while (1)
+	{
+		*ps += 1;
+		if (**ps == ' ')
+			flags->space = 1;
+		else if (**ps == '#')
+			flags->hashtag = 1;
+		else if (**ps == '+')
+			flags->sign = '+';
+		else if (**ps == '0')
+			flags->fill = '0';
+		else
+			break ;
+	}
+	if (**ps == '-' || ft_isdigit(**ps))
+		flags->width = cheching_flag(ps, flags);
+	if (**ps == '.')
+		flags->precision = cheching_flag(ps, flags);
+}
+
+int	check_format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 {
 	int	count;
 
@@ -36,52 +77,19 @@ int	format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 	else if (c == '%')
 		count = print_char(flags, '%');
 	else
-	{
-		ft_bzero(flags, sizeof(o_list));
 		return (0);
-	}
 	*ps += 1;
 	return (count);
 }
-int	cheching_flag(char c, o_list *flags)
-{
-	if (c == ' ')
-		flags->space = 1;
-	else if (c == '#')
-		flags->hashtag = 1;
-	else if (c == '+')
-		flags->sign = '+';
-	else if (c == '0')
-		flags->fill = '0';
-	else
-		return (0);
-	return (1);
-}
 
-int	check_flag(const char **ps, o_list *flags, va_list ap)
+int	format_specifier(const char **ps, o_list *flags, va_list ap)
 {
-	*ps += 1;
-	while (ft_strchr(" #+0", **ps))
-		*ps += cheching_flag(**ps, flags);
-	if (**ps == '-' || ft_isdigit(**ps))
-	{
-		while (*(*ps + 1) == '-')
-			*ps += 1;
-		flags->width = ft_atoi(*ps);
-		if (**ps == '-')
-			*ps += 1;
-		while (ft_isdigit(**ps) && **ps)
-			*ps += 1;
-	}
-	if (**ps == '.')
-	{
-		flags->point = 1;
-		*ps += 1;
-		flags->precision = ft_atoi(*ps);
-		while (ft_isdigit(**ps) && **ps)
-			*ps += 1;
-	}
-	return (format_specifier(ps, **ps, flags, ap));
+	int	count;
+
+	check_flag(ps, flags);
+	count = check_format_specifier(ps, **ps, flags, ap);
+	ft_bzero(flags, sizeof(o_list));
+	return (count);
 }
 
 int	ft_printf(const char *s, ...)
@@ -93,12 +101,12 @@ int	ft_printf(const char *s, ...)
 	flags = ft_calloc(1, sizeof(o_list));
 	if (flags == NULL)
 		return (0);
-	va_start(ap, s);
 	count = 0;
+	va_start(ap, s);
 	while (*s)
 	{
 		if (*s == '%')
-			count += check_flag(&s, flags, ap);
+			count += format_specifier(&s, flags, ap);
 		else
 			count += print_part(&s);
 	}
