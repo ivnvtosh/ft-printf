@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "../libft/libft.h"
 
 int	nbrlen(unsigned long n, int mode)
 {

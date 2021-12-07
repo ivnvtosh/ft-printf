@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "../libft/libft.h"
 
 int	format_specifier(const char **ps, char c, va_list ap)
 {
@@ -46,8 +47,8 @@ int	ft_printf(const char *s, ...)
 	va_list	ap;
 	int		count;
 
-	va_start(ap, s);
 	count = 0;
+	va_start(ap, s);
 	while (*s)
 	{
 		if (*s == '%')

@@ -11,18 +11,20 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "../libft/libft.h"
 
 int	print_decimal(long n)
 {
-	int	len;
+	int	nlen;
 
-	len = 0;
-	if (n < 0)
+	if (n > 0)
+		nlen = 0;
+	else
 	{
-		len = print_char('-');
+		nlen = print_char('-');
 		n = -n;
 	}
-	len += nbrlen(n, 10);
+	nlen += nbrlen(n, 10);
 	print_number("0123456789", n, 10);
-	return (len);
+	return (nlen);
 }

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "../libft/libft.h"
 
 int	print_hexadecimal_lowercase(unsigned int n)
 {
