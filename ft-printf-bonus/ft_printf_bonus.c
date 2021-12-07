@@ -12,7 +12,7 @@
 
 #include "printf_bonus.h"
 
-int	cheching_flag(const char **ps, o_list *flags)
+int	cheching_flag(const char **ps, t_flags *flags)
 {
 	int	n;
 
@@ -31,7 +31,7 @@ int	cheching_flag(const char **ps, o_list *flags)
 	return (n);
 }
 
-void	check_flag(const char **ps, o_list *flags)
+void	check_flag(const char **ps, t_flags *flags)
 {
 	while (1)
 	{
@@ -53,7 +53,7 @@ void	check_flag(const char **ps, o_list *flags)
 		flags->precision = cheching_flag(ps, flags);
 }
 
-int	check_format_specifier(const char **ps, char c, o_list *flags, va_list ap)
+int	check_format_specifier(const char **ps, char c, t_flags *flags, va_list ap)
 {
 	int	count;
 
@@ -69,7 +69,7 @@ int	check_format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 	else if (c == 'i')
 		count = print_decimal(flags, va_arg(ap, int));
 	else if (c == 'u')
-		count = print_unsigned_decimal(flags,va_arg(ap, unsigned int));
+		count = print_unsigned_decimal(flags, va_arg(ap, unsigned int));
 	else if (c == 'x')
 		count = print_hexadecimal_lowercase(flags, va_arg(ap, unsigned int));
 	else if (c == 'X')
@@ -82,23 +82,23 @@ int	check_format_specifier(const char **ps, char c, o_list *flags, va_list ap)
 	return (count);
 }
 
-int	format_specifier(const char **ps, o_list *flags, va_list ap)
+int	format_specifier(const char **ps, t_flags *flags, va_list ap)
 {
 	int	count;
 
 	check_flag(ps, flags);
 	count = check_format_specifier(ps, **ps, flags, ap);
-	ft_bzero(flags, sizeof(o_list));
+	ft_bzero(flags, sizeof(t_flags));
 	return (count);
 }
 
 int	ft_printf(const char *s, ...)
 {
-	o_list	*flags;
+	t_flags	*flags;
 	va_list	ap;
 	int		count;
 
-	flags = ft_calloc(1, sizeof(o_list));
+	flags = ft_calloc(1, sizeof(t_flags));
 	if (flags == NULL)
 		return (0);
 	count = 0;

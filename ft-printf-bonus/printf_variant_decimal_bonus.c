@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variant_decimal.c                                  :+:      :+:    :+:   */
+/*   printf_variant_decimal_bonus.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "printf_bonus.h"
 
-void	variant_1(o_list *flags)
+void	variant_1(t_flags *flags)
 {
 	if (flags->width < 0)
 		flags->width = -flags->width;
@@ -21,7 +21,7 @@ void	variant_1(o_list *flags)
 	print_width(flags);
 }
 
-void	variant_2(o_list *flags, char *s, unsigned long n)
+void	variant_2(t_flags *flags, char *s, unsigned long n)
 {
 	print_sign(flags);
 	print_width(flags);
@@ -29,7 +29,7 @@ void	variant_2(o_list *flags, char *s, unsigned long n)
 	print_number(s, n, ft_strlen(s));
 }
 
-void	variant_3(o_list *flags, char *s, unsigned long n)
+void	variant_3(t_flags *flags, char *s, unsigned long n)
 {
 	print_width(flags);
 	print_sign(flags);
@@ -37,7 +37,7 @@ void	variant_3(o_list *flags, char *s, unsigned long n)
 	print_number(s, n, ft_strlen(s));
 }
 
-void	variant_4(o_list *flags, char *s, unsigned long n)
+void	variant_4(t_flags *flags, char *s, unsigned long n)
 {
 	flags->width = -flags->width;
 	print_sign(flags);
@@ -46,7 +46,7 @@ void	variant_4(o_list *flags, char *s, unsigned long n)
 	print_width(flags);
 }
 
-void	variant_5(o_list *flags, char *s, unsigned long n)
+void	variant_5(t_flags *flags, char *s, unsigned long n)
 {
 	print_sign(flags);
 	print_precision(flags);

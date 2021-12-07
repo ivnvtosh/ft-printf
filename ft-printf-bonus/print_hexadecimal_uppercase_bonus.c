@@ -12,7 +12,7 @@
 
 #include "printf_bonus.h"
 
-int	print_hexadecimal_uppercase(o_list *flags, unsigned int n)
+int	print_hexadecimal_uppercase(t_flags *flags, unsigned int n)
 {
 	int	count;
 

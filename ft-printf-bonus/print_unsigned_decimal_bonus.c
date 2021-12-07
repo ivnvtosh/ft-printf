@@ -12,7 +12,7 @@
 
 #include "printf_bonus.h"
 
-int	print_unsigned_decimal(o_list *flags, unsigned int n)
+int	print_unsigned_decimal(t_flags *flags, unsigned int n)
 {
 	int	count;
 

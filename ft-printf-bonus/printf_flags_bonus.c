@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char_bonus.c                                 :+:      :+:    :+:   */
+/*   printf_flags_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 17:58:53 by ccamie            #+#    #+#             */
-/*   Updated: 2021/11/30 17:58:55 by ccamie           ###   ########.fr       */
+/*   Created: 2021/12/07 20:43:48 by ccamie            #+#    #+#             */
+/*   Updated: 2021/12/07 20:43:49 by ccamie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf_bonus.h"
 
-int	print_char(t_flags *flags, char c)
+void	print_sign(t_flags *flags)
 {
-	int	count;
-	int	len;
+	if (flags->sign)
+		ft_putchar_fd(flags->sign, 1);
+	else if (flags->space)
+		ft_putchar_fd(' ', 1);
+	else if (flags->hashtag == 2)
+		ft_putstr_fd("0X", 1);
+	else if (flags->hashtag)
+		ft_putstr_fd("0x", 1);
+}
 
-	len = 1;
-	if (flags->fill == 0)
-		flags->fill = ' ';
-	if (flags->width > 0)
-	{
-		count = flags->width;
-		print_space(count - len, flags->fill);
-		ft_putchar_fd(c, 1);
-	}
-	else if (flags->width < 0)
-	{
-		count = flags->width * -1;
-		ft_putchar_fd(c, 1);
-		print_space(count - len, flags->fill);
-	}
-	else
-	{
-		count = len;
-		ft_putchar_fd(c, 1);
-	}
-	return (count);
+void	print_width(t_flags *flags)
+{
+	print_space(flags->width, flags->fill);
+}
+
+void	print_precision(t_flags *flags)
+{
+	print_space(flags->precision, '0');
 }

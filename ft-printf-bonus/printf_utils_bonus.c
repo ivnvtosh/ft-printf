@@ -27,29 +27,7 @@ int	nbrlen(unsigned long n, int mode)
 	return (count);
 }
 
-void	print_sign(o_list *flags)
-{
-	if (flags->sign)
-		ft_putchar_fd(flags->sign, 1);
-	else if (flags->space)
-		ft_putchar_fd(' ', 1);
-	else if (flags->hashtag == 2)
-		ft_putstr_fd("0X", 1);
-	else if (flags->hashtag)
-		ft_putstr_fd("0x", 1);
-}
-
-void	print_width(o_list *flags)
-{
-	print_space(flags->width, flags->fill);
-}
-
-void	print_precision(o_list *flags)
-{
-	print_space(flags->precision, '0');
-}
-
-int	getcount(o_list *flags, unsigned long n, int mode)
+int	getcount(t_flags *flags, unsigned long n, int mode)
 {
 	int	count;
 	int	nlen;
@@ -74,7 +52,7 @@ int	getcount(o_list *flags, unsigned long n, int mode)
 	return (count);
 }
 
-void	print_flag_nbr(o_list *flags, char *s, unsigned long n)
+void	print_flag_nbr(t_flags *flags, char *s, unsigned long n)
 {
 	if (n == 0 && flags->point && flags->precision == 0)
 		variant_1(flags);

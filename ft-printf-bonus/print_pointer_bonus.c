@@ -12,7 +12,7 @@
 
 #include "printf_bonus.h"
 
-int	print_pointer(o_list *flags, unsigned long n)
+int	print_pointer(t_flags *flags, unsigned long n)
 {
 	int	count;
 
