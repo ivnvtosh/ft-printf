@@ -15,6 +15,7 @@
 int	print_hexadecimal_uppercase(t_flags *flags, unsigned int n)
 {
 	int	count;
+	int	nlen;
 
 	if (flags->point && flags->precision == 0 && n == 0 && flags->width == 0)
 		return (0);
@@ -25,8 +26,9 @@ int	print_hexadecimal_uppercase(t_flags *flags, unsigned int n)
 	if (flags->hashtag)
 		flags->hashtag = 2;
 	flags->sign = 0;
-	count = getcount(flags, n, 16);
-	process_flags(flags, n, 16);
+	nlen = nbrlen(n, 16);
+	count = getcount(flags, nlen);
+	process_flags(flags, nlen);
 	print_flag_nbr(flags, "0123456789ABCDEF", n);
 	return (count);
 }

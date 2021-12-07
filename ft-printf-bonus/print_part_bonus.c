@@ -14,12 +14,13 @@
 
 int	print_part(const char **ps)
 {
-	int	i;
+	char	*s;
+	int		i;
 
+	s = *ps;
 	i = 0;
-	while ((*ps)[i] != '%' && (*ps)[i] != '\0')
+	while (s[i] != '%' && s[i] != '\0')
 		i++;
-	write(1, *ps, i);
-	*ps += i;
+	*ps += write(1, s, i);
 	return (i);
 }

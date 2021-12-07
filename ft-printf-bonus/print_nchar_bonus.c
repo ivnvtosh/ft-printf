@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_space_bonus.c                                :+:      :+:    :+:   */
+/*   print_nchar_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,11 @@
 
 #include "printf_bonus.h"
 
-int	print_space(int count, char c)
+void	print_nchar(char c, int len)
 {
-	int	len;
-
-	len = count;
-	while (count > 0)
+	while (len > 0)
 	{
 		ft_putchar_fd(c, 1);
-		count--;
+		len--;
 	}
-	return (len);
 }

@@ -54,11 +54,8 @@ static void	process_precision(t_flags *flags, int nlen)
 		flags->precision = 0;
 }
 
-void	process_flags(t_flags *flags, unsigned long n, int mode)
+void	process_flags(t_flags *flags, int nlen)
 {
-	int	nlen;
-
-	nlen = nbrlen(n, mode);
 	process_fill(flags);
 	process_width(flags, nlen);
 	process_precision(flags, nlen);

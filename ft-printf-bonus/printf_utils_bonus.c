@@ -27,14 +27,12 @@ int	nbrlen(unsigned long n, int mode)
 	return (count);
 }
 
-int	getcount(t_flags *flags, unsigned long n, int mode)
+int	getcount(t_flags *flags, int nlen)
 {
 	int	count;
-	int	nlen;
 	int	width;
 
 	width = flags->width;
-	nlen = nbrlen(n, mode);
 	if (flags->hashtag)
 		nlen += 2;
 	if (width < 0)

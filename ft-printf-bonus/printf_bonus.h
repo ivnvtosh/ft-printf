@@ -43,11 +43,11 @@ int		print_unsigned_decimal(t_flags *flags, unsigned int n);
 int		print_hexadecimal_lowercase(t_flags *flags, unsigned int n);
 int		print_hexadecimal_uppercase(t_flags *flags, unsigned int n);
 
-int		getcount(t_flags *flags, unsigned long n, int mode);
-void	process_flags(t_flags *flags, unsigned long n, int mode);
+int		getcount(t_flags *flags, int nlen);
+void	process_flags(t_flags *flags, int nlen);
 void	print_flag_nbr(t_flags *flags, char *s, unsigned long n);
 
-int		print_space(int count, char c);
+void	print_nchar(char c, int len);
 void	print_sign(t_flags *flags);
 void	print_width(t_flags *flags);
 void	print_precision(t_flags *flags);
@@ -57,4 +57,5 @@ void	variant_2(t_flags *flags, char *s, unsigned long n);
 void	variant_3(t_flags *flags, char *s, unsigned long n);
 void	variant_4(t_flags *flags, char *s, unsigned long n);
 void	variant_5(t_flags *flags, char *s, unsigned long n);
+
 #endif

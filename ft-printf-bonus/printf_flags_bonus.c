@@ -26,10 +26,10 @@ void	print_sign(t_flags *flags)
 
 void	print_width(t_flags *flags)
 {
-	print_space(flags->width, flags->fill);
+	print_nchar(flags->fill, flags->width);
 }
 
 void	print_precision(t_flags *flags)
 {
-	print_space(flags->precision, '0');
+	print_nchar('0', flags->precision);
 }

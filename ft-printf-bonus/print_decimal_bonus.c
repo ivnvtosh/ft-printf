@@ -15,6 +15,7 @@
 int	print_decimal(t_flags *flags, long n)
 {
 	int	count;
+	int	nlen;
 
 	if (flags->point && flags->precision == 0 && n == 0 && flags->width == 0)
 		return (0);
@@ -26,8 +27,9 @@ int	print_decimal(t_flags *flags, long n)
 		n = -n;
 	}
 	flags->hashtag = 0;
-	count = getcount(flags, n, 10);
-	process_flags(flags, n, 10);
+	nlen = nbrlen(n, 10);
+	count = getcount(flags, nlen);
+	process_flags(flags, nlen);
 	print_flag_nbr(flags, "0123456789", n);
 	return (count);
 }
