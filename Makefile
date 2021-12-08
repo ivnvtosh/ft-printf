@@ -16,16 +16,16 @@ HEADER_B=	ft-printf-bonus/printf_bonus.h
 
 LIBFT	=	libft/libft.a
 
-SRCS	=	ft-printf/print_char.c					\
-			ft-printf/print_decimal.c				\
-			ft-printf/print_hexadecimal_lowercase.c	\
-			ft-printf/print_hexadecimal_uppercase.c	\
-			ft-printf/print_number.c				\
-			ft-printf/print_part.c					\
-			ft-printf/print_pointer.c				\
-			ft-printf/print_string.c				\
-			ft-printf/print_unsigned_decimal.c		\
-			ft-printf/printf_utils.c				\
+SRCS	=	ft-printf/print_char.c									\
+			ft-printf/print_decimal.c								\
+			ft-printf/print_hexadecimal_lowercase.c					\
+			ft-printf/print_hexadecimal_uppercase.c					\
+			ft-printf/print_number.c								\
+			ft-printf/print_part.c									\
+			ft-printf/print_pointer.c								\
+			ft-printf/print_string.c								\
+			ft-printf/print_unsigned_decimal.c						\
+			ft-printf/printf_utils.c								\
 			ft-printf/ft_printf.c
 
 SRCS_B	=	ft-printf-bonus/print_char_bonus.c						\
@@ -38,7 +38,7 @@ SRCS_B	=	ft-printf-bonus/print_char_bonus.c						\
 			ft-printf-bonus/print_string_bonus.c					\
 			ft-printf-bonus/print_unsigned_decimal_bonus.c			\
 			ft-printf-bonus/printf_utils_bonus.c					\
-			ft-printf-bonus/print_space_bonus.c						\
+			ft-printf-bonus/print_nchar_bonus.c						\
 			ft-printf-bonus/printf_variant_decimal_bonus.c			\
 			ft-printf-bonus/printf_process_flags_bonus.c			\
 			ft-printf-bonus/printf_flags_bonus.c					\

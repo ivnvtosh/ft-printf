@@ -12,18 +12,18 @@
 
 #include "printf_bonus.h"
 
-int	print_pointer(t_flags *flags, unsigned long n)
+int	print_pointer(t_flag *flag, unsigned long n)
 {
 	int	count;
 	int	nlen;
 
-	if (flags->point && flags->precision == 0 && n == 0 && flags->width == 0)
+	if (flag->point && flag->precision == 0 && n == 0 && flag->width == 0)
 		return (0);
-	flags->sign = 0;
-	flags->hashtag = 1;
+	flag->sign = 0;
+	flag->hashtag = 1;
 	nlen = nbrlen(n, 16);
-	count = getcount(flags, nlen);
-	process_flags(flags, nlen);
-	print_flag_nbr(flags, "0123456789abcdef", n);
+	count = getcount(flag, nlen);
+	process_flag(flag, nlen);
+	print_flag_nbr(flag, "0123456789abcdef", n);
 	return (count);
 }

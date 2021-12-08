@@ -15,8 +15,8 @@
 
 int	print_part(const char **ps)
 {
-	char	*s;
-	int		i;
+	const char	*s;
+	int			i;
 
 	s = *ps;
 	i = 0;

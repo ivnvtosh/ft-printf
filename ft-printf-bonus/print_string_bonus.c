@@ -12,9 +12,9 @@
 
 #include "printf_bonus.h"
 
-static int	getslen(t_flags *flags, int width, int slen)
+static int	getslen(t_flag *flag, int width, int slen)
 {
-	if (width > slen || (flags->precision && flags->precision < slen))
+	if (width > slen || (flag->precision && flag->precision < slen))
 		return (width);
 	return (slen);
 }
@@ -29,38 +29,38 @@ static void	print_precision_str(char *s, int precision, int slen)
 		ft_putstr_fd(s, 1);
 }
 
-static int	variant_string(t_flags *flags, char *s, int slen)
+static int	variant_string(t_flag *flag, char *s, int slen)
 {
 	int	count;
 
-	count = getslen(flags, flags->width, slen);
-	if (flags->precision && flags->precision < slen)
-		print_space(count - flags->precision, ' ');
+	count = getslen(flag, flag->width, slen);
+	if (flag->precision && flag->precision < slen)
+		print_nchar(' ', count - flag->precision);
 	else
-		print_space(count - slen, ' ');
-	print_precision_str(s, flags->precision, slen);
+		print_nchar(' ', count - slen);
+	print_precision_str(s, flag->precision, slen);
 	return (count);
 }
 
-int	ft_ft(t_flags *flags, char *s, int slen)
+int	ft_ft(t_flag *flag, char *s, int slen)
 {
 	int	count;
 
-	if (flags->width > 0)
-		count = variant_string(flags, s, slen);
-	else if (flags->width < 0)
+	if (flag->width > 0)
+		count = variant_string(flag, s, slen);
+	else if (flag->width < 0)
 	{
-		count = getslen(flags, flags->width * -1, slen);
-		print_precision_str(s, flags->precision, slen);
-		if (flags->precision && flags->precision < slen)
-			print_space(count - flags->precision, ' ');
+		count = getslen(flag, flag->width * -1, slen);
+		print_precision_str(s, flag->precision, slen);
+		if (flag->precision && flag->precision < slen)
+			print_nchar(' ', count - flag->precision);
 		else
-			print_space(count - slen, ' ');
+			print_nchar(' ', count - slen);
 	}
-	else if (flags->precision && flags->precision < slen)
+	else if (flag->precision && flag->precision < slen)
 	{
-		count = flags->precision;
-		print_precision_str(s, flags->precision, slen);
+		count = flag->precision;
+		print_precision_str(s, flag->precision, slen);
 	}
 	else
 	{
@@ -70,22 +70,22 @@ int	ft_ft(t_flags *flags, char *s, int slen)
 	return (count);
 }
 
-int	print_string(t_flags *flags, char *s)
+int	print_string(t_flag *flag, char *s)
 {
 	int	count;
 	int	slen;
 
-	if (flags->point && flags->precision == 0)
+	if (flag->point && flag->precision == 0)
 	{
-		if (flags->width > 0)
-			print_space(flags->width, ' ');
-		if (flags->width < 0)
-			print_space(-flags->width, ' ');
-		return (flags->width);
+		if (flag->width > 0)
+			print_nchar(' ', flag->width);
+		if (flag->width < 0)
+			print_nchar(' ', -flag->width);
+		return (flag->width);
 	}
 	if (s == NULL)
-		return (print_string(flags, "(null)"));
+		return (print_string(flag, "(null)"));
 	slen = ft_strlen(s);
-	count = ft_ft(flags, s, slen);
+	count = ft_ft(flag, s, slen);
 	return (count);
 }

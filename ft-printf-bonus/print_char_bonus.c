@@ -12,25 +12,25 @@
 
 #include "printf_bonus.h"
 
-int	print_char(t_flags *flags, char c)
+int	print_char(t_flag *flag, char c)
 {
 	int	count;
 	int	len;
 
 	len = 1;
-	if (flags->fill == 0)
-		flags->fill = ' ';
-	if (flags->width > 0)
+	if (flag->fill == 0)
+		flag->fill = ' ';
+	if (flag->width > 0)
 	{
-		count = flags->width;
-		print_space(count - len, flags->fill);
+		count = flag->width;
+		print_nchar(flag->fill, count - len);
 		ft_putchar_fd(c, 1);
 	}
-	else if (flags->width < 0)
+	else if (flag->width < 0)
 	{
-		count = flags->width * -1;
+		count = flag->width * -1;
 		ft_putchar_fd(c, 1);
-		print_space(count - len, flags->fill);
+		print_nchar(flag->fill, count - len);
 	}
 	else
 	{

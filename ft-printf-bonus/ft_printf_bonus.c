@@ -12,13 +12,13 @@
 
 #include "printf_bonus.h"
 
-int	cheching_flag(const char **ps, t_flags *flags)
+int	cheching_flag(const char **ps, t_flag *flag)
 {
 	int	n;
 
 	if (**ps == '.')
 	{
-		flags->point = 1;
+		flag->point = 1;
 		*ps += 1;
 	}
 	while (*(*ps + 1) == '-')
@@ -31,86 +31,86 @@ int	cheching_flag(const char **ps, t_flags *flags)
 	return (n);
 }
 
-void	check_flag(const char **ps, t_flags *flags)
+void	check_flag(const char **ps, t_flag *flag)
 {
 	while (1)
 	{
 		*ps += 1;
 		if (**ps == ' ')
-			flags->space = 1;
+			flag->space = 1;
 		else if (**ps == '#')
-			flags->hashtag = 1;
+			flag->hashtag = 1;
 		else if (**ps == '+')
-			flags->sign = '+';
+			flag->sign = '+';
 		else if (**ps == '0')
-			flags->fill = '0';
+			flag->fill = '0';
 		else
 			break ;
 	}
 	if (**ps == '-' || ft_isdigit(**ps))
-		flags->width = cheching_flag(ps, flags);
+		flag->width = cheching_flag(ps, flag);
 	if (**ps == '.')
-		flags->precision = cheching_flag(ps, flags);
+		flag->precision = cheching_flag(ps, flag);
 }
 
-int	check_format_specifier(const char **ps, char c, t_flags *flags, va_list ap)
+int	check_format_specifier(const char **ps, char c, t_flag *flag, va_list ap)
 {
 	int	count;
 
 	count = 0;
 	if (c == 'c')
-		count = print_char(flags, va_arg(ap, int));
+		count = print_char(flag, va_arg(ap, int));
 	else if (c == 's')
-		count = print_string(flags, va_arg(ap, char *));
+		count = print_string(flag, va_arg(ap, char *));
 	else if (c == 'p')
-		count = print_pointer(flags, (unsigned long)va_arg(ap, void *));
+		count = print_pointer(flag, (unsigned long)va_arg(ap, void *));
 	else if (c == 'd')
-		count = print_decimal(flags, va_arg(ap, int));
+		count = print_decimal(flag, va_arg(ap, int));
 	else if (c == 'i')
-		count = print_decimal(flags, va_arg(ap, int));
+		count = print_decimal(flag, va_arg(ap, int));
 	else if (c == 'u')
-		count = print_unsigned_decimal(flags, va_arg(ap, unsigned int));
+		count = print_unsigned_decimal(flag, va_arg(ap, unsigned int));
 	else if (c == 'x')
-		count = print_hexadecimal_lowercase(flags, va_arg(ap, unsigned int));
+		count = print_hexadecimal_lowercase(flag, va_arg(ap, unsigned int));
 	else if (c == 'X')
-		count = print_hexadecimal_uppercase(flags, va_arg(ap, unsigned int));
+		count = print_hexadecimal_uppercase(flag, va_arg(ap, unsigned int));
 	else if (c == '%')
-		count = print_char(flags, '%');
+		count = print_char(flag, '%');
 	else
 		return (0);
 	*ps += 1;
 	return (count);
 }
 
-int	format_specifier(const char **ps, t_flags *flags, va_list ap)
+int	format_specifier(const char **ps, t_flag *flag, va_list ap)
 {
 	int	count;
 
-	check_flag(ps, flags);
-	count = check_format_specifier(ps, **ps, flags, ap);
-	ft_bzero(flags, sizeof(t_flags));
+	check_flag(ps, flag);
+	count = check_format_specifier(ps, **ps, flag, ap);
+	ft_bzero(flag, sizeof(t_flag));
 	return (count);
 }
 
 int	ft_printf(const char *s, ...)
 {
-	t_flags	*flags;
+	t_flag	*flag;
 	va_list	ap;
 	int		count;
 
-	flags = ft_calloc(1, sizeof(t_flags));
-	if (flags == NULL)
+	flag = ft_calloc(1, sizeof(t_flag));
+	if (flag == NULL)
 		return (0);
 	count = 0;
 	va_start(ap, s);
 	while (*s)
 	{
 		if (*s == '%')
-			count += format_specifier(&s, flags, ap);
+			count += format_specifier(&s, flag, ap);
 		else
 			count += print_part(&s);
 	}
 	va_end(ap);
-	free(flags);
+	free(flag);
 	return (count);
 }

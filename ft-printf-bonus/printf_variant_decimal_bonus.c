@@ -12,43 +12,43 @@
 
 #include "printf_bonus.h"
 
-void	variant_1(t_flags *flags)
+void	variant_1(t_flag *flag)
 {
-	if (flags->width < 0)
-		flags->width = -flags->width;
-	flags->width += 1;
-	flags->fill = ' ';
-	print_width(flags);
+	if (flag->width < 0)
+		flag->width = -flag->width;
+	flag->width += 1;
+	flag->fill = ' ';
+	print_width(flag);
 }
 
-void	variant_2(t_flags *flags, char *s, unsigned long n)
+void	variant_2(t_flag *flag, char *s, unsigned long n)
 {
-	print_sign(flags);
-	print_width(flags);
-	print_precision(flags);
+	print_sign(flag);
+	print_width(flag);
+	print_precision(flag);
 	print_number(s, n, ft_strlen(s));
 }
 
-void	variant_3(t_flags *flags, char *s, unsigned long n)
+void	variant_3(t_flag *flag, char *s, unsigned long n)
 {
-	print_width(flags);
-	print_sign(flags);
-	print_precision(flags);
+	print_width(flag);
+	print_sign(flag);
+	print_precision(flag);
 	print_number(s, n, ft_strlen(s));
 }
 
-void	variant_4(t_flags *flags, char *s, unsigned long n)
+void	variant_4(t_flag *flag, char *s, unsigned long n)
 {
-	flags->width = -flags->width;
-	print_sign(flags);
-	print_precision(flags);
+	flag->width = -flag->width;
+	print_sign(flag);
+	print_precision(flag);
 	print_number(s, n, ft_strlen(s));
-	print_width(flags);
+	print_width(flag);
 }
 
-void	variant_5(t_flags *flags, char *s, unsigned long n)
+void	variant_5(t_flag *flag, char *s, unsigned long n)
 {
-	print_sign(flags);
-	print_precision(flags);
+	print_sign(flag);
+	print_precision(flag);
 	print_number(s, n, ft_strlen(s));
 }

@@ -27,39 +27,39 @@ int	nbrlen(unsigned long n, int mode)
 	return (count);
 }
 
-int	getcount(t_flags *flags, int nlen)
+int	getcount(t_flag *flag, int nlen)
 {
 	int	count;
 	int	width;
 
-	width = flags->width;
-	if (flags->hashtag)
+	width = flag->width;
+	if (flag->hashtag)
 		nlen += 2;
 	if (width < 0)
 		width = -width;
-	if (flags->precision > nlen && flags->precision >= width)
-		count = flags->precision;
+	if (flag->precision > nlen && flag->precision >= width)
+		count = flag->precision;
 	else if (width > nlen)
 		return (width);
 	else
 		count = nlen;
-	if (flags->sign)
+	if (flag->sign)
 		count++;
-	if (flags->space && flags->sign == 0)
+	if (flag->space && flag->sign == 0)
 		count++;
 	return (count);
 }
 
-void	print_flag_nbr(t_flags *flags, char *s, unsigned long n)
+void	print_flag_nbr(t_flag *flag, char *s, unsigned long n)
 {
-	if (n == 0 && flags->point && flags->precision == 0)
-		variant_1(flags);
-	else if (flags->width > 0 && flags->fill == '0')
-		variant_2(flags, s, n);
-	else if (flags->width > 0)
-		variant_3(flags, s, n);
-	else if (flags->width < 0)
-		variant_4(flags, s, n);
+	if (n == 0 && flag->point && flag->precision == 0)
+		variant_1(flag);
+	else if (flag->width > 0 && flag->fill == '0')
+		variant_2(flag, s, n);
+	else if (flag->width > 0)
+		variant_3(flag, s, n);
+	else if (flag->width < 0)
+		variant_4(flag, s, n);
 	else
-		variant_5(flags, s, n);
+		variant_5(flag, s, n);
 }

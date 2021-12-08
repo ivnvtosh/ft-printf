@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_flags_bonus.c                               :+:      :+:    :+:   */
+/*   printf_flag_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccamie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,24 +12,24 @@
 
 #include "printf_bonus.h"
 
-void	print_sign(t_flags *flags)
+void	print_sign(t_flag *flag)
 {
-	if (flags->sign)
-		ft_putchar_fd(flags->sign, 1);
-	else if (flags->space)
+	if (flag->sign)
+		ft_putchar_fd(flag->sign, 1);
+	else if (flag->space)
 		ft_putchar_fd(' ', 1);
-	else if (flags->hashtag == 2)
+	else if (flag->hashtag == 2)
 		ft_putstr_fd("0X", 1);
-	else if (flags->hashtag)
+	else if (flag->hashtag)
 		ft_putstr_fd("0x", 1);
 }
 
-void	print_width(t_flags *flags)
+void	print_width(t_flag *flag)
 {
-	print_nchar(flags->fill, flags->width);
+	print_nchar(flag->fill, flag->width);
 }
 
-void	print_precision(t_flags *flags)
+void	print_precision(t_flag *flag)
 {
-	print_nchar('0', flags->precision);
+	print_nchar('0', flag->precision);
 }
