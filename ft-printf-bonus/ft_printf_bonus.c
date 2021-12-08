@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf_bonus.h"
+#include "../libft/libft.h"
 
 int	cheching_flag(const char **ps, t_flag *flag)
 {
@@ -57,7 +58,6 @@ int	check_format_specifier(const char **ps, char c, t_flag *flag, va_list ap)
 {
 	int	count;
 
-	count = 0;
 	if (c == 'c')
 		count = print_char(flag, va_arg(ap, int));
 	else if (c == 's')

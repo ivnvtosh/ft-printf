@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf_bonus.h"
+#include "../libft/libft.h"
 
 int	print_hexadecimal_lowercase(t_flag *flag, unsigned int n)
 {
@@ -23,6 +24,8 @@ int	print_hexadecimal_lowercase(t_flag *flag, unsigned int n)
 		return (print_char(flag, '0'));
 	if (flag->hashtag == 1 && n == 0)
 		return (print_char(flag, '0'));
+	if (flag->hashtag)
+		flag->hashtag = 'x';
 	flag->sign = 0;
 	nlen = nbrlen(n, 16);
 	count = getcount(flag, nlen);

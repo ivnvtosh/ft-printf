@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf_bonus.h"
+#include "../libft/libft.h"
 
 int	print_char(t_flag *flag, char c)
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf_bonus.h"
+#include "../libft/libft.h"
 
 static void	process_fill(t_flag *flag)
 {

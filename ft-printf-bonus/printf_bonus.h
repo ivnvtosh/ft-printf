@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include "../libft/libft.h"
 
 typedef struct s_flag
 {
@@ -48,7 +47,7 @@ void	process_flag(t_flag *flag, int nlen);
 void	print_flag_nbr(t_flag *flag, char *s, unsigned long n);
 
 void	print_nchar(char c, int len);
-void	print_sign(t_flag *flag);
+void	print_flag(t_flag *flag);
 void	print_width(t_flag *flag);
 void	print_precision(t_flag *flag);
 

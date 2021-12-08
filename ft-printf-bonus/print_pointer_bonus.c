@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf_bonus.h"
+#include "../libft/libft.h"
 
 int	print_pointer(t_flag *flag, unsigned long n)
 {
@@ -19,8 +20,8 @@ int	print_pointer(t_flag *flag, unsigned long n)
 
 	if (flag->point && flag->precision == 0 && n == 0 && flag->width == 0)
 		return (0);
+	flag->hashtag = 'x';
 	flag->sign = 0;
-	flag->hashtag = 1;
 	nlen = nbrlen(n, 16);
 	count = getcount(flag, nlen);
 	process_flag(flag, nlen);

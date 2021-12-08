@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf_bonus.h"
+#include "../libft/libft.h"
 
 int	print_hexadecimal_uppercase(t_flag *flag, unsigned int n)
 {
@@ -24,7 +25,7 @@ int	print_hexadecimal_uppercase(t_flag *flag, unsigned int n)
 	if (flag->hashtag == 1 && n == 0)
 		return (print_char(flag, '0'));
 	if (flag->hashtag)
-		flag->hashtag = 2;
+		flag->hashtag = 'X';
 	flag->sign = 0;
 	nlen = nbrlen(n, 16);
 	count = getcount(flag, nlen);

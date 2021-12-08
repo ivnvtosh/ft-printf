@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf_bonus.h"
+#include "../libft/libft.h"
 
 void	variant_1(t_flag *flag)
 {
@@ -23,7 +24,7 @@ void	variant_1(t_flag *flag)
 
 void	variant_2(t_flag *flag, char *s, unsigned long n)
 {
-	print_sign(flag);
+	print_flag(flag);
 	print_width(flag);
 	print_precision(flag);
 	print_number(s, n, ft_strlen(s));
@@ -32,7 +33,7 @@ void	variant_2(t_flag *flag, char *s, unsigned long n)
 void	variant_3(t_flag *flag, char *s, unsigned long n)
 {
 	print_width(flag);
-	print_sign(flag);
+	print_flag(flag);
 	print_precision(flag);
 	print_number(s, n, ft_strlen(s));
 }
@@ -40,7 +41,7 @@ void	variant_3(t_flag *flag, char *s, unsigned long n)
 void	variant_4(t_flag *flag, char *s, unsigned long n)
 {
 	flag->width = -flag->width;
-	print_sign(flag);
+	print_flag(flag);
 	print_precision(flag);
 	print_number(s, n, ft_strlen(s));
 	print_width(flag);
@@ -48,7 +49,7 @@ void	variant_4(t_flag *flag, char *s, unsigned long n)
 
 void	variant_5(t_flag *flag, char *s, unsigned long n)
 {
-	print_sign(flag);
+	print_flag(flag);
 	print_precision(flag);
 	print_number(s, n, ft_strlen(s));
 }
