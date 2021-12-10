@@ -17,7 +17,7 @@ int	print_decimal(long n)
 {
 	int	nlen;
 
-	if (n > 0)
+	if (n >= 0)
 		nlen = 0;
 	else
 	{

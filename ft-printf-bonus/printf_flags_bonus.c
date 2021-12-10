@@ -15,7 +15,7 @@
 
 void	print_flag(t_flag *flag)
 {
-	if (flag->sign) 
+	if (flag->sign)
 		ft_putchar_fd(flag->sign, 1);
 	else if (flag->space)
 		ft_putchar_fd(' ', 1);
