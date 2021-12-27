@@ -10,47 +10,50 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
+char	*ft_strdup(const char *s1);
 
-static int	ft_len(int n)
+static size_t	ft_nbrlen(int n)
 {
-	int	i;
+	int	len;
 
 	if (n == 0)
 		return (1);
-	i = 0;
 	if (n < 0)
-		i++;
+		len = 1;
+	else
+		len = 0;
 	while (n)
 	{
 		n = n / 10;
-		i++;
+		len++;
 	}
-	return (i);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*p;
-	int		i;
-	int		sign;
+	char	*s;
+	int		slen;
 
-	sign = 1;
-	i = ft_len(n);
-	p = (char *)malloc(sizeof(*p) * (i + 1));
-	if (p == NULL)
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	slen = ft_nbrlen(n);
+	s = (char *)malloc(sizeof(*s) * (slen + 1));
+	if (s == NULL)
 		return (NULL);
-	p[i--] = 0;
-	p[0] = '0';
+	s[slen--] = 0;
+	if (n == 0)
+		s[0] = 48;
 	if (n < 0)
 	{
-		p[0] = '-';
-		sign = -1;
+		s[0] = 45;
+		n = -n;
 	}
 	while (n)
 	{
-		p[i--] = n % 10 * sign + '0';
+		s[slen--] = n % 10 + 48;
 		n = n / 10;
 	}
-	return (p);
+	return (s);
 }

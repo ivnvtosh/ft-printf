@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+int	ft_isdigit(int c);
 
 int	ft_atoi(const char *str)
 {
