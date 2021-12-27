@@ -15,8 +15,6 @@
 
 static void	process_fill(t_flag *flag)
 {
-	int	width;
-
 	if (flag->fill == 0 || flag->precision)
 		flag->fill = ' ';
 }
